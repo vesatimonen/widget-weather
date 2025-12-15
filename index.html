@@ -9,6 +9,9 @@
         <link rel="shortcut icon" href="images/icon.png"/>
         <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
 
+        <link rel="stylesheet" href="https://usetrmnl.com/css/latest/plugins.css">
+        <script src="https://usetrmnl.com/js/latest/plugins.js"></script>
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="css/styles.css">
 
@@ -38,64 +41,64 @@
             WIDGET_WEATHER
         </div>
 
-    <div class="view view--half-vertical">
-        <div class="layout layout--col layout--top p--0 layout--stretch-x gap--xsmall">
-            <div class="flex flex--row gap--xsmall">
-                <div class="widget bg--gray-65">
-                    <div id="weather-header"      class="widget-header"></div>
-                    <img id="current-weather-img" class="widget-image" src=""/>
-                    <div id="daily-sunrise"       class="widget-footer" style="text-align: left;"></div>
-                    <div id="daily-sunset"        class="widget-footer" style="text-align: right;"></div>
+        <div class="trmnl view view--full">
+            <div class="layout layout--col layout--top p--0 layout--stretch-x gap--xsmall">
+                <div class="flex flex--row gap--xsmall">
+                    <div class="widget bg--gray-65">
+                        <div id="weather-header"      class="widget-header"></div>
+                        <img id="current-weather-img" class="widget-image" src=""/>
+                        <div id="daily-sunrise"       class="widget-footer" style="text-align: left;"></div>
+                        <div id="daily-sunset"        class="widget-footer" style="text-align: right;"></div>
+                    </div>
+                    <div class="widget bg--gray-65">
+                        <div id="temperature-header"           class="widget-header"></div>
+                        <div id="current-temperature"          class="widget-value"></div>
+                        <div id="current-apparent-temperature" class="widget-footer" style="font-weight: 400;"></div>
+                        <div id="current-temperature-unit"     class="widget-footer" style="text-align: right;"></div>
+                    </div>
+                    <div class="widget bg--gray-65">
+                        <div id="wind-header"       class="widget-header"></div>
+                        <div id="current-wind"      class="widget-value"></div>
+                        <div id="current-gusts"     class="widget-footer" style="font-weight: 400;"></div>
+                        <div id="current-wind-unit" class="widget-footer" style="text-align: right;"></div>
+                        <canvas                     class="widget-canvas wind-widget-canvas"></canvas>
+                    </div>
+                    <div class="widget bg--gray-65">
+                        <div id="uv-index-header"     class="widget-header">UV INDEX</div>
+                        <div id="current-uv-index"    class="widget-value"></div>
+                        <div id="current-cloud-cover" class="widget-footer" style="font-weight: 400;"></div>
+                    </div>
                 </div>
-                <div class="widget bg--gray-65">
-                    <div id="temperature-header"           class="widget-header"></div>
-                    <div id="current-temperature"          class="widget-value"></div>
-                    <div id="current-apparent-temperature" class="widget-footer" style="font-weight: 400;"></div>
-                    <div id="current-temperature-unit"     class="widget-footer" style="text-align: right;"></div>
+
+                <div class="widget graph bg--gray-65">
+                    <div class="widget-header  m--0 p--0">PRECIPITATION / PROBABILITY</div>
+                    <canvas class="widget-canvas precipitation-canvas"></canvas>
                 </div>
-                <div class="widget bg--gray-65">
-                    <div id="wind-header"       class="widget-header"></div>
-                    <div id="current-wind"      class="widget-value"></div>
-                    <div id="current-gusts"     class="widget-footer" style="font-weight: 400;"></div>
-                    <div id="current-wind-unit" class="widget-footer" style="text-align: right;"></div>
-                    <canvas                     class="widget-canvas wind-widget-canvas"></canvas>
+
+                <div class="widget graph bg--gray-65">
+                    <div class="widget-header">TEMPERATURE / FEELS LIKE</div>
+                    <canvas class="widget-canvas temperature-canvas"></canvas>
                 </div>
-                <div class="widget bg--gray-65">
-                    <div id="uv-index-header"     class="widget-header">UV INDEX</div>
-                    <div id="current-uv-index"    class="widget-value"></div>
-                    <div id="current-cloud-cover" class="widget-footer" style="font-weight: 400;"></div>
+
+                <div class="widget graph bg--gray-65">
+                    <div class="widget-header">WIND / GUSTS</div>
+                    <canvas class="widget-canvas wind-canvas"></canvas>
+                </div>
+
+                <div class="widget graph bg--gray-65">
+                    <div class="widget-header">UV INDEX / CLOUD COVER</div>
+                    <canvas class="widget-canvas uv-canvas"></canvas>
                 </div>
             </div>
 
-            <div class="widget graph bg--gray-65">
-                <div class="widget-header  m--0 p--0">PRECIPITATION / PROBABILITY</div>
-                <canvas class="widget-canvas precipitation-canvas"></canvas>
+    <!--
+            <div class="title_bar bg--gray-6">
+                <span class="title">Widget Weather</span>
+                <span class="instance">{{ 'now' | date: '%B %d, %Y' }}</span>
             </div>
+    -->
 
-            <div class="widget graph bg--gray-65">
-                <div class="widget-header">TEMPERATURE / FEELS LIKE</div>
-                <canvas class="widget-canvas temperature-canvas"></canvas>
-            </div>
-
-            <div class="widget graph bg--gray-65">
-                <div class="widget-header">WIND / GUSTS</div>
-                <canvas class="widget-canvas wind-canvas"></canvas>
-            </div>
-
-            <div class="widget graph bg--gray-65">
-                <div class="widget-header">UV INDEX / CLOUD COVER</div>
-                <canvas class="widget-canvas uv-canvas"></canvas>
-            </div>
         </div>
-
-<!--
-        <div class="title_bar bg--gray-6">
-            <span class="title">Widget Weather</span>
-            <span class="instance">{{ 'now' | date: '%B %d, %Y' }}</span>
-        </div>
--->
-
-    </div>
 
 
         <div id="debug-text"></div>
