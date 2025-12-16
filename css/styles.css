@@ -176,16 +176,6 @@
     }
 
 
-    table {
-        border-collapse: collapse;
-        width: 100%
-    }
-
-    tr,td,th {
-        position: relative;
-        border-spacing: 0;
-        padding: 0
-    }
 
 
 /* ??? Flex stretch ??? */
