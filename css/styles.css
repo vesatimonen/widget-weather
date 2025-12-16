@@ -111,5 +111,33 @@
 
 
 .hidden {
-    visibility: hidden;
+    visibility:         hidden;
 }
+
+.flex-own {
+    display:            flex;
+}
+
+.flex--col {
+    flex-direction:     column;
+    align-items:        center
+}
+
+.flex--ownrow {
+    flex-direction:     row;
+    align-items:        center;
+    justify-content:    center
+}
+
+.gap--ownxsmall {
+    gap:                5px;
+}
+
+
+
+/*
+flex--top
+flex--bottom
+flex--right
+flex--left
+*/
