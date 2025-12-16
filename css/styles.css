@@ -106,10 +106,21 @@
     z-index:        -1;
 }
 
+/* ELEMENTS */
+.screen {
+    /* Screen size */
+    width:              calc(100vw - 10px);
+    max-width:          var(--game-screen-max-width);
+    min-width:          var(--game-screen-min-width);
+
+    margin-left:        auto;
+    margin-right:       auto;
+
+    background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
+}
 
 
-
-
+/* FEATURES */
 .hidden {
     visibility:         hidden;
 }
