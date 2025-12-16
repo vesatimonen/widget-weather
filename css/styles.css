@@ -33,7 +33,6 @@
 }
 
 .widget {
-    font-family:    'Oswald', sans-serif;
     font-size:      3vh;
     font-weight:    200;
     font-style:     normal;
@@ -84,7 +83,6 @@
 }
 
 .widget-value {
-    font-family:    'Oswald', sans-serif;
     font-size:      8vh;
     font-weight:    400;
     font-style:     normal;
