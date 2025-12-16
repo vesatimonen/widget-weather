@@ -4,31 +4,26 @@ const strorageName = "widget-weather";
 /*****************************************************************************
 * Get current location
 *****************************************************************************/
-function getCurrentLocation() {
-  return new Promise((resolve, reject) => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => resolve(position),
-        (error) => reject(error)
-      );
-    } else {
-      reject(new Error("Geolocation not supported"));
+async function getCurrentLocation() {
+  try {
+    if (!("geolocation" in navigator)) {
+      throw new Error("Geolocation is not supported by this browser.");
     }
-  });
-}
 
-/*****************************************************************************
-* Parse URL options
-*****************************************************************************/
-function parseOptions() {
-    /* Get URL */
-    const url = new URL(window.location.href);
+    // Wrap getCurrentPosition in a Promise so we can use await
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
 
-    /* Level option */
-    const levelOption = url.searchParams.get("level");
-    if (levelOption == null) {
-    } else {
-    }
+    // Extract latitude and longitude
+    const latitude  = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    return { latitude, longitude }; // return as object
+  } catch (err) {
+    console.error("Failed to get current location:", err);
+    return null; // or handle it in another way
+  }
 }
 
 
@@ -45,11 +40,32 @@ async function getWeatherData() {
   }
 }
 
-// *** Main *******************************************************
+
+/*****************************************************************************
+* Parse URL options
+*****************************************************************************/
+function parseOptions() {
+    /* Get URL */
+    const url = new URL(window.location.href);
+
+    /* Level option */
+    const levelOption = url.searchParams.get("level");
+    if (levelOption == null) {
+    } else {
+    }
+}
+
+/*****************************************************************************
+* Main
+*****************************************************************************/
 window.onload = function() {
     // Parse options
     parseOptions();
 
+    getCurrentLocation().then(({ latitude, longitude }) => {
+        console.log(latitude);
+        console.log(longitude);
+    });
 
 
     // Get weather data (wait for results)
