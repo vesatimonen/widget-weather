@@ -28,778 +28,6 @@ async function getWeatherData() {
 }
 
 
-// Convert liquid variables to JS
-const current_units = {
-    "time": "iso8601",
-    "interval": "seconds",
-    "is_day": "",
-    "uv_index": "",
-    "temperature_2m": "°C",
-    "precipitation": "mm",
-    "weather_code": "wmo code",
-    "wind_speed_10m": "m/s",
-    "wind_direction_10m": "°",
-    "wind_gusts_10m": "m/s",
-    "apparent_temperature": "°C",
-    "relative_humidity_2m": "%",
-    "cloud_cover": "%",
-    "surface_pressure": "hPa"
-};
-const current = {
-    "time": "2025-12-15T10:30",
-    "interval": 900,
-    "is_day": 1,
-    "uv_index": 0.05,
-    "temperature_2m": 5.2,
-    "precipitation": 0.0,
-    "weather_code": 3,
-    "wind_speed_10m": 5.7,
-    "wind_direction_10m": 188,
-    "wind_gusts_10m": 7.7,
-    "apparent_temperature": 1.1,
-    "relative_humidity_2m": 100,
-    "cloud_cover": 100,
-    "surface_pressure": 1004.8
-};
-const hourly_units  = {
-    "time": "iso8601",
-    "is_day": "",
-    "uv_index": "",
-    "temperature_2m": "°C",
-    "precipitation_probability": "%",
-    "relative_humidity_2m": "%",
-    "apparent_temperature": "°C",
-    "precipitation": "mm",
-    "weather_code": "wmo code",
-    "surface_pressure": "hPa",
-    "cloud_cover": "%",
-    "wind_speed_10m": "m/s",
-    "wind_direction_10m": "°",
-    "wind_gusts_10m": "m/s"
-};
-const hourly        = {
-"time": [
-  "2025-12-15T00:00",
-  "2025-12-15T01:00",
-  "2025-12-15T02:00",
-  "2025-12-15T03:00",
-  "2025-12-15T04:00",
-  "2025-12-15T05:00",
-  "2025-12-15T06:00",
-  "2025-12-15T07:00",
-  "2025-12-15T08:00",
-  "2025-12-15T09:00",
-  "2025-12-15T10:00",
-  "2025-12-15T11:00",
-  "2025-12-15T12:00",
-  "2025-12-15T13:00",
-  "2025-12-15T14:00",
-  "2025-12-15T15:00",
-  "2025-12-15T16:00",
-  "2025-12-15T17:00",
-  "2025-12-15T18:00",
-  "2025-12-15T19:00",
-  "2025-12-15T20:00",
-  "2025-12-15T21:00",
-  "2025-12-15T22:00",
-  "2025-12-15T23:00",
-  "2025-12-16T00:00",
-  "2025-12-16T01:00",
-  "2025-12-16T02:00",
-  "2025-12-16T03:00",
-  "2025-12-16T04:00",
-  "2025-12-16T05:00",
-  "2025-12-16T06:00",
-  "2025-12-16T07:00",
-  "2025-12-16T08:00",
-  "2025-12-16T09:00",
-  "2025-12-16T10:00",
-  "2025-12-16T11:00",
-  "2025-12-16T12:00",
-  "2025-12-16T13:00",
-  "2025-12-16T14:00",
-  "2025-12-16T15:00",
-  "2025-12-16T16:00",
-  "2025-12-16T17:00",
-  "2025-12-16T18:00",
-  "2025-12-16T19:00",
-  "2025-12-16T20:00",
-  "2025-12-16T21:00",
-  "2025-12-16T22:00",
-  "2025-12-16T23:00"
-],
-"is_day": [
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0
-],
-"uv_index": [
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.1,
-  0.1,
-  0.1,
-  0.05,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.05,
-  0.3,
-  0.35,
-  0.25,
-  0.05,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0
-],
-"temperature_2m": [
-  3.8,
-  3.3,
-  3.5,
-  3.6,
-  3.8,
-  3.8,
-  4.0,
-  4.1,
-  4.2,
-  4.8,
-  5.2,
-  5.2,
-  5.4,
-  5.5,
-  5.7,
-  5.9,
-  5.9,
-  5.8,
-  5.8,
-  5.9,
-  5.9,
-  5.8,
-  5.9,
-  6.0,
-  6.1,
-  6.1,
-  6.2,
-  6.2,
-  6.1,
-  6.1,
-  6.1,
-  6.1,
-  6.1,
-  6.3,
-  6.2,
-  6.3,
-  6.4,
-  6.7,
-  6.7,
-  6.5,
-  6.4,
-  6.2,
-  6.1,
-  6.0,
-  6.1,
-  6.1,
-  6.2,
-  6.3
-],
-"precipitation_probability": [
-  70,
-  30,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  2,
-  4,
-  10,
-  20,
-  33,
-  45,
-  56,
-  66,
-  69,
-  61,
-  46,
-  33,
-  23,
-  14,
-  8,
-  6,
-  6,
-  6,
-  6,
-  5,
-  6,
-  8,
-  11,
-  12,
-  10,
-  7,
-  4,
-  2,
-  1,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  1,
-  2,
-  2
-],
-"relative_humidity_2m": [
-  98,
-  100,
-  100,
-  98,
-  97,
-  99,
-  98,
-  97,
-  96,
-  97,
-  99,
-  100,
-  99,
-  98,
-  98,
-  98,
-  98,
-  96,
-  96,
-  96,
-  95,
-  95,
-  95,
-  94,
-  95,
-  95,
-  96,
-  97,
-  97,
-  98,
-  97,
-  97,
-  98,
-  98,
-  98,
-  97,
-  95,
-  93,
-  91,
-  92,
-  91,
-  94,
-  94,
-  86,
-  91,
-  89,
-  90,
-  94
-],
-"apparent_temperature": [
-  -0.7,
-  0.0,
-  -0.2,
-  0.4,
-  0.6,
-  0.9,
-  1.6,
-  1.8,
-  1.6,
-  1.6,
-  1.1,
-  1.1,
-  1.0,
-  1.1,
-  1.1,
-  0.9,
-  1.3,
-  1.1,
-  1.9,
-  2.4,
-  2.1,
-  2.2,
-  2.5,
-  2.7,
-  2.7,
-  2.8,
-  2.7,
-  2.9,
-  2.9,
-  2.6,
-  2.8,
-  3.3,
-  3.1,
-  3.2,
-  2.7,
-  2.9,
-  2.9,
-  2.2,
-  1.0,
-  2.0,
-  2.5,
-  2.8,
-  2.6,
-  1.9,
-  1.9,
-  1.9,
-  1.4,
-  1.5
-],
-"precipitation": [
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.2,
-  0.2,
-  0.3,
-  1.6,
-  0.8,
-  0.1,
-  0.1,
-  0.2,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.1,
-  1.5,
-  0.1,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.1,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.0,
-  0.1
-],
-"weather_code": [
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  51,
-  51,
-  51,
-  61,
-  53,
-  51,
-  51,
-  51,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  51,
-  61,
-  51,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  51,
-  3,
-  3,
-  3,
-  3,
-  3,
-  51
-],
-"surface_pressure": [
-  1002.9,
-  1003.4,
-  1003.9,
-  1004.6,
-  1005.0,
-  1004.9,
-  1004.9,
-  1004.4,
-  1004.4,
-  1004.8,
-  1004.8,
-  1004.8,
-  1004.9,
-  1004.7,
-  1004.6,
-  1004.5,
-  1004.5,
-  1004.7,
-  1004.8,
-  1005.0,
-  1005.2,
-  1005.4,
-  1005.8,
-  1006.6,
-  1007.2,
-  1007.6,
-  1007.9,
-  1008.1,
-  1008.3,
-  1008.6,
-  1009.1,
-  1009.5,
-  1010.0,
-  1010.5,
-  1011.1,
-  1011.6,
-  1011.7,
-  1012.0,
-  1012.2,
-  1012.6,
-  1012.8,
-  1012.8,
-  1012.8,
-  1012.7,
-  1012.8,
-  1012.8,
-  1013.1,
-  1013.2
-],
-"cloud_cover": [
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  100,
-  99,
-  100,
-  100,
-  100,
-  100
-],
-"wind_speed_10m": [
-  5.7,
-  3.5,
-  4.1,
-  3.1,
-  3.1,
-  2.8,
-  1.7,
-  1.5,
-  2.2,
-  3.5,
-  5.4,
-  5.7,
-  6.2,
-  6.1,
-  6.6,
-  7.6,
-  6.8,
-  6.8,
-  5.4,
-  4.5,
-  4.9,
-  4.6,
-  4.2,
-  4.1,
-  4.2,
-  4.2,
-  4.5,
-  4.1,
-  4.0,
-  4.5,
-  4.2,
-  3.3,
-  3.7,
-  4.2,
-  4.8,
-  4.5,
-  4.8,
-  6.4,
-  8.7,
-  6.4,
-  5.1,
-  4.2,
-  4.3,
-  5.0,
-  5.5,
-  5.5,
-  6.7,
-  6.9
-],
-"wind_direction_10m": [
-  251,
-  280,
-  277,
-  264,
-  246,
-  253,
-  237,
-  179,
-  166,
-  188,
-  188,
-  203,
-  213,
-  213,
-  214,
-  218,
-  225,
-  235,
-  240,
-  233,
-  238,
-  250,
-  251,
-  248,
-  250,
-  250,
-  250,
-  252,
-  249,
-  242,
-  250,
-  240,
-  230,
-  241,
-  234,
-  235,
-  241,
-  244,
-  240,
-  230,
-  238,
-  239,
-  245,
-  230,
-  229,
-  238,
-  243,
-  239
-],
-"wind_gusts_10m": [
-  11.5,
-  7.6,
-  6.1,
-  5.6,
-  4.3,
-  4.7,
-  3.9,
-  2.3,
-  2.8,
-  4.7,
-  7.2,
-  7.8,
-  8.4,
-  8.6,
-  8.9,
-  10.4,
-  10.3,
-  9.3,
-  9.1,
-  7.3,
-  6.6,
-  6.6,
-  6.3,
-  5.8,
-  5.7,
-  5.7,
-  6.1,
-  6.1,
-  5.6,
-  6.1,
-  6.4,
-  5.7,
-  5.0,
-  5.7,
-  6.5,
-  6.8,
-  6.5,
-  8.7,
-  11.8,
-  11.8,
-  8.9,
-  6.8,
-  7.0,
-  6.8,
-  7.4,
-  7.9,
-  9.1,
-  9.5
-]
-};
-const daily_units   = {
-"time": "iso8601",
-"sunrise": "iso8601",
-"sunset": "iso8601"
-};
-const daily         = {
-"time": [
-  "2025-12-15",
-  "2025-12-16"
-],
-"sunrise": [
-  "2025-12-15T09:19",
-  "2025-12-16T09:20"
-],
-"sunset": [
-  "2025-12-15T15:12",
-  "2025-12-16T15:12"
-]
-};
-
-
 // Set canvas size
 function fixCanvasSize(canvas) {
     const dpi = window.devicePixelRatio || 1;
@@ -847,18 +75,18 @@ function getWeatherIcon(code, is_day)  {
 }
 function drawCurrentWeather() {
     document.getElementById("weather-header").innerHTML = "HELSINKI";
-    document.getElementById("daily-sunrise").innerHTML  = daily.sunrise[0].split("T")[1];
-    document.getElementById("daily-sunset").innerHTML   = daily.sunset[0].split("T")[1];
-    document.getElementById("current-weather-img").src = getWeatherIcon(current.weather_code, current.is_day);
+    document.getElementById("daily-sunrise").innerHTML  = weatherData.daily.sunrise[0].split("T")[1];
+    document.getElementById("daily-sunset").innerHTML   = weatherData.daily.sunset[0].split("T")[1];
+    document.getElementById("current-weather-img").src  = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
 }
 
 
 // *** Current temperature *******************************************************
 function drawCurrentTemperature() {
     document.getElementById("temperature-header").innerHTML           = "TEMPERATURE";
-    document.getElementById("current-temperature").innerHTML          = current.temperature_2m;
-    document.getElementById("current-apparent-temperature").innerHTML = current.apparent_temperature;
-    document.getElementById("current-temperature-unit").innerHTML     = current_units.temperature_2m;
+    document.getElementById("current-temperature").innerHTML          = weatherData.current.temperature_2m;
+    document.getElementById("current-apparent-temperature").innerHTML = weatherData.current.apparent_temperature;
+    document.getElementById("current-temperature-unit").innerHTML     = weatherData.current_units.temperature_2m;
 }
 
 
@@ -866,7 +94,7 @@ function drawCurrentTemperature() {
 function drawCurrentWindArrow(canvas) {
     const ctx = canvas.getContext("2d");
 
-    const arrowAngle = Math.PI * 2 * ((current.wind_direction_10m + 180)/ 360);
+    const arrowAngle = Math.PI * 2 * ((weatherData.current.wind_direction_10m + 180)/ 360);
     const sin = Math.sin(arrowAngle);
     const cos = Math.cos(arrowAngle);
 
@@ -898,9 +126,9 @@ function drawCurrentWindArrow(canvas) {
 
 function drawCurrentWind() {
     document.getElementById("wind-header").innerHTML       = "WIND";
-    document.getElementById("current-wind").innerHTML      = current.wind_speed_10m;
-    document.getElementById("current-gusts").innerHTML     = current.wind_gusts_10m;
-    document.getElementById("current-wind-unit").innerHTML = current_units.wind_speed_10m;
+    document.getElementById("current-wind").innerHTML      = weatherData.current.wind_speed_10m;
+    document.getElementById("current-gusts").innerHTML     = weatherData.current.wind_gusts_10m;
+    document.getElementById("current-wind-unit").innerHTML = weatherData.current_units.wind_speed_10m;
     drawCurrentWindArrow(document.querySelector(".wind-widget-canvas"));
 }
 
@@ -908,8 +136,8 @@ function drawCurrentWind() {
 // *** Current UV index *******************************************************
 function drawCurrentUVIndex() {
     document.getElementById("uv-index-header").innerHTML     = "UV INDEX";
-    document.getElementById("current-uv-index").innerHTML    = current.uv_index;
-    document.getElementById("current-cloud-cover").innerHTML = current.cloud_cover + "%";
+    document.getElementById("current-uv-index").innerHTML    = weatherData.current.uv_index;
+    document.getElementById("current-cloud-cover").innerHTML = weatherData.current.cloud_cover + "%";
 }
 
 // *** Graph cursor *******************************************************
@@ -917,7 +145,7 @@ function drawGraphCurrentCursor(graph) {
     const canvas = graph.canvas;
 
     // Findout current hour
-    const date = new Date(current.time);
+    const date = new Date(weatherData.current.time);
     const hour = date.getHours() + date.getMinutes() / 60;
 
     // Convert current hour to canvas x-value
@@ -1191,12 +419,12 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
 
 function drawGraphs() {
     // Initialize graphs
-    precipitationGraph     = initializeGraph(document.querySelector(".precipitation-canvas"), hourly.time, [hourly.precipitation],                               5);
-    precipitationProbGraph = initializeGraph(document.querySelector(".precipitation-canvas"), hourly.time, [[0, 100]],                                           5);
-    temperatureGraph       = initializeGraph(document.querySelector(".temperature-canvas"),   hourly.time, [hourly.temperature_2m, hourly.apparent_temperature], 5);
-    windGraph              = initializeGraph(document.querySelector(".wind-canvas"),          hourly.time, [hourly.wind_speed_10m, hourly.wind_gusts_10m],       5);
-    uvGraph                = initializeGraph(document.querySelector(".uv-canvas"),            hourly.time, [hourly.uv_index],                                    5);
-    cloudCoverGraph        = initializeGraph(document.querySelector(".uv-canvas"),            hourly.time, [[0, 100]],                                           5);
+    precipitationGraph     = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [weatherData.hourly.precipitation],                               5);
+    precipitationProbGraph = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [[0, 100]],                                           5);
+    temperatureGraph       = initializeGraph(document.querySelector(".temperature-canvas"),   weatherData.hourly.time, [weatherData.hourly.temperature_2m, weatherData.hourly.apparent_temperature], 5);
+    windGraph              = initializeGraph(document.querySelector(".wind-canvas"),          weatherData.hourly.time, [weatherData.hourly.wind_speed_10m, weatherData.hourly.wind_gusts_10m],       5);
+    uvGraph                = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [weatherData.hourly.uv_index],                                    5);
+    cloudCoverGraph        = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [[0, 100]],                                           5);
 
     // Draw cursors
     drawGraphCurrentCursor(precipitationGraph);
@@ -1205,32 +433,32 @@ function drawGraphs() {
     drawGraphCurrentCursor(uvGraph);
 
     // Draw data
-    drawGraphData(precipitationGraph,     hourly.precipitation,             GraphType.LINE);
-//        drawGraphData(precipitationGraph,     hourly.precipitation,             GraphType.BAR);
-    drawGraphData(precipitationProbGraph, hourly.precipitation_probability, GraphType.LINE_DASHED);
-    drawGraphData(temperatureGraph,       hourly.temperature_2m,            GraphType.LINE);
-    drawGraphData(temperatureGraph,       hourly.apparent_temperature,      GraphType.LINE_DASHED);
-    drawGraphData(windGraph,              hourly.wind_speed_10m,            GraphType.LINE);
-    drawGraphData(windGraph,              hourly.wind_gusts_10m,            GraphType.LINE_DASHED);
-    drawGraphData(uvGraph,                hourly.uv_index,                  GraphType.LINE);
-//        drawGraphData(uvGraph,                hourly.uv_index,                  GraphType.BAR);
-    drawGraphData(cloudCoverGraph,        hourly.cloud_cover,               GraphType.LINE_DASHED);
+    drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.LINE);
+//        drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.BAR);
+    drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_DASHED);
+    drawGraphData(temperatureGraph,       weatherData.hourly.temperature_2m,            GraphType.LINE);
+    drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_DASHED);
+    drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
+    drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_DASHED);
+    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
+//        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
+    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_DASHED);
 
     // Draw x-axis
-    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(hourly.time.length / 12));
-    drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = Math.round(hourly.time.length / 12));
-    drawGraphXAxis(windGraph,          minorTick = 1, majorTick = Math.round(hourly.time.length / 12));
-    drawGraphXAxis(uvGraph,            minorTick = 1, majorTick = Math.round(hourly.time.length / 12));
+    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
+    drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
+    drawGraphXAxis(windGraph,          minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
+    drawGraphXAxis(uvGraph,            minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
 
     // Draw y-axis
-    drawGraphYAxis(precipitationGraph,     hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(precipitationProbGraph, hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 10, majorTick = 25);
-    drawGraphYAxis(temperatureGraph,       hourly_units.temperature_2m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(temperatureGraph,       hourly_units.apparent_temperature,      YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(windGraph,              hourly_units.wind_speed_10m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(windGraph,              hourly_units.wind_gusts_10m,            YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(uvGraph,                hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(cloudCoverGraph,        hourly_units.cloud_cover,               YAxisType.RIGHT, minorTick = 10, majorTick = 25);
+    drawGraphYAxis(precipitationGraph,     weatherData.hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(precipitationProbGraph, weatherData.hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 10, majorTick = 25);
+    drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.temperature_2m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.apparent_temperature,      YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_speed_10m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_gusts_10m,            YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(uvGraph,                weatherData.hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(cloudCoverGraph,        weatherData.hourly_units.cloud_cover,               YAxisType.RIGHT, minorTick = 10, majorTick = 25);
 }
 
 
