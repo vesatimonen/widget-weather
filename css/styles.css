@@ -129,7 +129,7 @@
     display:            flex;
 }
 
-.flex--col {
+.flex--owncol {
     flex-direction:     column;
     align-items:        center
 }
@@ -143,6 +143,23 @@
 .gap--ownxsmall {
     gap:                5px;
 }
+
+
+.layout--ownstretch-x > * {
+    flex: 1 1 0%;
+}
+
+/* col */
+.layout--ownstretch-x1 > * {
+    flex:       initial;
+    align-self: stretch;
+}
+
+/* row */
+.layout--ownstretch-x2 > * {
+    flex: 1 1 0%;
+}
+
 
 
 
