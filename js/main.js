@@ -58,6 +58,33 @@ function parseOptions() {
 /*****************************************************************************
 * Main
 *****************************************************************************/
+
+function redraw() {
+    // Fix canvas sizes
+    const canvases = [
+        ".wind-widget-canvas",
+        ".precipitation-canvas",
+        ".temperature-canvas",
+        ".wind-canvas",
+        ".uv-canvas"
+    ];
+    for (let index = 0; index < canvases.length; index++) {
+        resizeCanvas(document.querySelector(canvases[index]));
+    }
+
+    // Draw current information into small widgets
+    drawCurrentWeather();
+    drawCurrentTemperature();
+    drawCurrentWind();
+    drawCurrentUVIndex();
+
+    // Draw forecast graphs
+    drawGraphs();
+
+    // Show window
+    document.getElementById("screen").style.visibility = "visible";
+}
+
 window.onload = async function() {
     try {
         // Parse options
@@ -73,29 +100,7 @@ window.onload = async function() {
         // Get weather data (wait for results)
         await getWeatherData(location.latitude, location.longitude);
 
-        // Fix canvas sizes
-        const canvases = [
-            ".wind-widget-canvas",
-            ".precipitation-canvas",
-            ".temperature-canvas",
-            ".wind-canvas",
-            ".uv-canvas"
-        ];
-        for (let index = 0; index < canvases.length; index++) {
-            resizeCanvas(document.querySelector(canvases[index]));
-        }
-
-        // Draw current information into small widgets
-        drawCurrentWeather();
-        drawCurrentTemperature();
-        drawCurrentWind();
-        drawCurrentUVIndex();
-
-        // Draw forecast graphs
-        drawGraphs();
-
-        // Show window
-        document.getElementById("screen").style.visibility = "visible";
+        redraw();
     } catch (err) {
         console.error("Error initializing page:", err);
     }
@@ -103,6 +108,8 @@ window.onload = async function() {
 
 
 
-
+window.resize = function() {
+    redraw();
+}
 
 
