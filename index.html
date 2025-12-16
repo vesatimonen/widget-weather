@@ -22,55 +22,53 @@
     <!-- BODY -->
     <body id="screen" class="screen hidden trmnl">
 
-        <div class="view">
-            <div class="layout-own flex-own flex--owncol layout--ownstretch-x1 gap--ownxsmall">
+        <div class="layout-own flex-own flex--owncol layout--ownstretch-x1 gap--ownxsmall">
 
-                <div class="flex-own flex--ownrow gap--ownxsmall">
-                    <div class="widget">
-                        <div id="weather-header"      class="widget-header"></div>
-                        <img id="current-weather-img" class="widget-image" src=""/>
-                        <div id="daily-sunrise"       class="widget-footer" style="text-align: left;"></div>
-                        <div id="daily-sunset"        class="widget-footer" style="text-align: right;"></div>
-                    </div>
-                    <div class="widget">
-                        <div id="temperature-header"           class="widget-header"></div>
-                        <div id="current-temperature"          class="widget-value"></div>
-                        <div id="current-apparent-temperature" class="widget-footer" style="font-weight: 400;"></div>
-                        <div id="current-temperature-unit"     class="widget-footer" style="text-align: right;"></div>
-                    </div>
-                    <div class="widget">
-                        <div id="wind-header"       class="widget-header"></div>
-                        <div id="current-wind"      class="widget-value"></div>
-                        <div id="current-gusts"     class="widget-footer" style="font-weight: 400;"></div>
-                        <div id="current-wind-unit" class="widget-footer" style="text-align: right;"></div>
-                        <canvas                     class="widget-canvas wind-widget-canvas"></canvas>
-                    </div>
-                    <div class="widget">
-                        <div id="uv-index-header"     class="widget-header">UV INDEX</div>
-                        <div id="current-uv-index"    class="widget-value"></div>
-                        <div id="current-cloud-cover" class="widget-footer" style="font-weight: 400;"></div>
-                    </div>
+            <div class="flex-own flex--ownrow gap--ownxsmall">
+                <div class="widget">
+                    <div id="weather-header"      class="widget-header"></div>
+                    <img id="current-weather-img" class="widget-image" src=""/>
+                    <div id="daily-sunrise"       class="widget-footer" style="text-align: left;"></div>
+                    <div id="daily-sunset"        class="widget-footer" style="text-align: right;"></div>
                 </div>
+                <div class="widget">
+                    <div id="temperature-header"           class="widget-header"></div>
+                    <div id="current-temperature"          class="widget-value"></div>
+                    <div id="current-apparent-temperature" class="widget-footer" style="font-weight: 400;"></div>
+                    <div id="current-temperature-unit"     class="widget-footer" style="text-align: right;"></div>
+                </div>
+                <div class="widget">
+                    <div id="wind-header"       class="widget-header"></div>
+                    <div id="current-wind"      class="widget-value"></div>
+                    <div id="current-gusts"     class="widget-footer" style="font-weight: 400;"></div>
+                    <div id="current-wind-unit" class="widget-footer" style="text-align: right;"></div>
+                    <canvas                     class="widget-canvas wind-widget-canvas"></canvas>
+                </div>
+                <div class="widget">
+                    <div id="uv-index-header"     class="widget-header">UV INDEX</div>
+                    <div id="current-uv-index"    class="widget-value"></div>
+                    <div id="current-cloud-cover" class="widget-footer" style="font-weight: 400;"></div>
+                </div>
+            </div>
 
-                <div class="widget graph">
-                    <div class="widget-header  m--0 p--0">PRECIPITATION / PROBABILITY</div>
-                    <canvas class="widget-canvas precipitation-canvas"></canvas>
-                </div>
+            <div class="widget graph">
+                <div class="widget-header  m--0 p--0">PRECIPITATION / PROBABILITY</div>
+                <canvas class="widget-canvas precipitation-canvas"></canvas>
+            </div>
 
-                <div class="widget graph">
-                    <div class="widget-header">TEMPERATURE / FEELS LIKE</div>
-                    <canvas class="widget-canvas temperature-canvas"></canvas>
-                </div>
+            <div class="widget graph">
+                <div class="widget-header">TEMPERATURE / FEELS LIKE</div>
+                <canvas class="widget-canvas temperature-canvas"></canvas>
+            </div>
 
-                <div class="widget graph">
-                    <div class="widget-header">WIND / GUSTS</div>
-                    <canvas class="widget-canvas wind-canvas"></canvas>
-                </div>
+            <div class="widget graph">
+                <div class="widget-header">WIND / GUSTS</div>
+                <canvas class="widget-canvas wind-canvas"></canvas>
+            </div>
 
-                <div class="widget graph">
-                    <div class="widget-header">UV INDEX / CLOUD COVER</div>
-                    <canvas class="widget-canvas uv-canvas"></canvas>
-                </div>
+            <div class="widget graph">
+                <div class="widget-header">UV INDEX / CLOUD COVER</div>
+                <canvas class="widget-canvas uv-canvas"></canvas>
             </div>
         </div>
 
