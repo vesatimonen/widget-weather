@@ -1,7 +1,7 @@
 // Set canvas size
 function fixCanvasSize(canvas) {
     const dpi = window.devicePixelRatio || 1;
-    canvas.width = canvas.clientWidth * dpi;
+    canvas.width  = canvas.clientWidth * dpi;
     canvas.height = canvas.clientHeight * dpi;
 }
 
@@ -180,6 +180,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             ctx.textBaseline = "middle";
             ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
             ctx.fillText(tickText, canvasX, (canvasY + graph.tickLength + canvas.height) / 2);
+//            ctx.fillText(tickText, canvasX, canvas.height);
         }
     }
 }
@@ -333,8 +334,8 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
         marginRight:    canvas.height * 0.20,
         color:          "#000",
 
-        tickLength:     canvas.height * 0.025,
-        fontSize:       canvas.height * 0.083
+        tickLength:     canvas.height * 0.030,
+        fontSize:       canvas.height * 0.100
     };
 
     // Initialize x-axis min/max values
