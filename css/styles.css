@@ -51,7 +51,7 @@
 
     background-color:   #92D2F2; /* #92D2F2, #B0DDFF*/
 
-    border-radius:  1vh;
+    border-radius:  2vw;
     overflow:       hidden;
 
     align-content:  center;
@@ -85,14 +85,14 @@
     bottom:         0%;
     width:          100%;
 
-    padding-left:   1vh;
-    padding-right:  1vh;
+    padding-left:   1vw;
+    padding-right:  1vw;
 
     z-index:        1;
 }
 
 .widget-value {
-    font-size:      8vh;
+    font-size:      12vw;
     font-weight:    400;
     font-style:     normal;
 
