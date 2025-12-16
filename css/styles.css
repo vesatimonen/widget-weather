@@ -1,4 +1,12 @@
 
+:root {
+    --screen-max-width: 640px;
+    --screen-min-width: 320px;
+        --screen-w: 800px;
+        --screen-h: 480px;
+}
+
+
 /*** Global default style ***/
 * {
     /* Prevent text selection */
@@ -109,13 +117,14 @@
 /* ELEMENTS */
 .screen {
     /* Screen size */
+/*
     width:              calc(100vw - 10px);
-    max-width:          var(--game-screen-max-width);
-    min-width:          var(--game-screen-min-width);
+    max-width:          var(--screen-max-width);
+    min-width:          var(--screen-min-width);
 
     margin-left:        auto;
     margin-right:       auto;
-
+*/
     background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
 }
 
@@ -160,8 +169,19 @@
     flex: 1 1 0%;
 }
 
+.layout-own {
+/*
+    width:  640px;
+    height: 800px;
+*/
+
+        width: var(--screen-w);
+        height: var(--screen-h)
+
+}
 
 
+/* ??? Flex stretch ??? */
 
 /*
 flex--top
