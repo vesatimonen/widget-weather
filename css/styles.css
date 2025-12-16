@@ -19,6 +19,9 @@
 
     /* Default font */
               font-family: 'Oswald', sans-serif;
+
+        box-sizing: border-box;
+
 }
 
 .truncate {
