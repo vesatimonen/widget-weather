@@ -21,7 +21,7 @@ async function getCurrentLocation() {
 
     return { latitude, longitude }; // return as object
   } catch (err) {
-    console.error("Failed to get current location:", err);
+    console.warn("Failed to get current location:", err);
     return null; // or handle it in another way
   }
 }
@@ -58,24 +58,30 @@ function parseOptions() {
 /*****************************************************************************
 * Main
 *****************************************************************************/
-window.onload = function() {
-    // Parse options
-    parseOptions();
+window.onload = async function() {
+    try {
+        // Parse options
+        parseOptions();
 
-    getCurrentLocation().then(({ latitude, longitude }) => {
-        console.log(latitude);
-        console.log(longitude);
-    });
+        // Get current location (wait for result)
+        let location = await getCurrentLocation();
 
+        if (location == null) {
+            location = {latitude: 60.1699, longitude: 24.9384};
+        }
 
-    // Get weather data (wait for results)
-    getWeatherData().then(() => {
+        // Get weather data (wait for results)
+        await getWeatherData(location.latitude, location.longitude);
+
         // Fix canvas sizes
-        fixCanvasSize(document.querySelector(".wind-widget-canvas"));
-        fixCanvasSize(document.querySelector(".precipitation-canvas"));
-        fixCanvasSize(document.querySelector(".temperature-canvas"));
-        fixCanvasSize(document.querySelector(".wind-canvas"));
-        fixCanvasSize(document.querySelector(".uv-canvas"));
+        const canvases = [
+            ".wind-widget-canvas",
+            ".precipitation-canvas",
+            ".temperature-canvas",
+            ".wind-canvas",
+            ".uv-canvas"
+        ];
+        canvases.forEach(selector => fixCanvasSize(document.querySelector(selector)));
 
         // Draw current information into small widgets
         drawCurrentWeather();
@@ -88,7 +94,9 @@ window.onload = function() {
 
         // Show window
         document.getElementById("screen").style.visibility = "visible";
-    });
+    } catch (err) {
+        console.error("Error initializing page:", err);
+    }
 }
 
 
