@@ -288,8 +288,8 @@ function drawGraphData(graph, yValues, graphType) {
                 const xValue = index - 0.5;
                 const yValue = yValues[index];
 
-                const canvasX = Math.round(graph.xOffset + graph.xCoeff * xValue);
-                const canvasY = Math.round(graph.yOffset + graph.yCoeff * yValue);
+                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue);
+                const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
                 const canvasW = Math.round(graph.xCoeff * 1.0);
                 const canvasH = Math.round(-graph.yCoeff * (yValue - graph.yValueMin));
 
@@ -315,8 +315,8 @@ function drawGraphData(graph, yValues, graphType) {
                 const xValue = index;
                 const yValue = yValues[index];
 
-                const canvasX = Math.round(graph.xOffset + graph.xCoeff * xValue);
-                const canvasY = Math.round(graph.yOffset + graph.yCoeff * yValue);
+                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue);
+                const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
 
                 if (index == 0) {
                     ctx.moveTo(canvasX, canvasY);
