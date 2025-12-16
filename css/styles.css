@@ -141,12 +141,12 @@
     display:            flex;
 }
 
-.flex--owncol {
+.flex--col {
     flex-direction:     column;
     align-items:        center
 }
 
-.flex--ownrow {
+.flex--row {
     flex-direction:     row;
     align-items:        center;
     justify-content:    center
