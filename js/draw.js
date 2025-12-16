@@ -392,7 +392,7 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     const valueYRange = graph.yValueMax - graph.yValueMin;
     const axisYRange  = axisYEnd - axisYStart;
     graph.yCoeff      = axisYRange / valueYRange;
-    graph.yOffset     = axisYStart - graph.yCoeff * graph.yValueMin;
+    graph.yOffset     = Math.round(axisYStart - graph.yCoeff * graph.yValueMin) + 0.5;
 
     return graph;
 }
