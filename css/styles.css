@@ -164,19 +164,8 @@
 }
 
 /* row */
-.layout--ownstretch-x2 > * {
+.layout--stretch-x2 > * {
     flex: 1 1 0%;
-}
-
-.layout-own {
-/*
-    width:  640px;
-    height: 800px;
-*/
-
-        width: var(--screen-w);
-        height: var(--screen-h)
-
 }
 
 
