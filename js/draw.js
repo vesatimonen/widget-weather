@@ -2,12 +2,19 @@
 function resizeCanvas(canvas) {
     const dpi = window.devicePixelRatio || 1;
 
-    const width  = canvas.clientWidth * dpi;
-    const height = canvas.clientHeight * dpi;
+    const rect = canvas.getBoundingClientRect();
+
+    const width  = rect.width * dpi;
+    const height = rect.height * dpi;
 
     if (canvas.width !== width || canvas.height !== height) {
         canvas.width  = width;
         canvas.height = height;
+
+console.log(rect.left, rect.top, rect.width, rect.height);
+// ??? Aseta style tässä?
+//canvas.style.width  = width + "px";
+//canvas.style.height = height + "px";
 
         const ctx = canvas.getContext("2d");
         ctx.scale(dpi, dpi);
