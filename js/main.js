@@ -81,7 +81,9 @@ window.onload = async function() {
             ".wind-canvas",
             ".uv-canvas"
         ];
-        canvases.forEach(selector => fixCanvasSize(document.querySelector(selector)));
+        for (let index = 0; index < canvases.length; index++) {
+            resizeCanvas(document.querySelector(canvases[index]));
+        }
 
         // Draw current information into small widgets
         drawCurrentWeather();

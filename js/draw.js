@@ -1,5 +1,5 @@
 // Set canvas size
-async function fixCanvasSize(canvas) {
+function resizeCanvas(canvas) {
     const dpi = window.devicePixelRatio || 1;
 
     const width  = canvas.clientWidth * dpi;
@@ -7,7 +7,7 @@ async function fixCanvasSize(canvas) {
 
     if (canvas.width !== width || canvas.height !== height) {
         canvas.width  = width;
-        canvas.height = width;
+        canvas.height = height;
 
         const ctx = canvas.getContext("2d");
         ctx.scale(dpi, dpi);
