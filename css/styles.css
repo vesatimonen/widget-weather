@@ -158,7 +158,7 @@
 
 
 /* col */
-.layout--ownstretch-x1 > * {
+.layout--stretch-x1 > * {
     flex:       initial;
     align-self: stretch;
 }
