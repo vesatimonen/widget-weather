@@ -1,8 +1,17 @@
 // Set canvas size
-function fixCanvasSize(canvas) {
+async function fixCanvasSize(canvas) {
     const dpi = window.devicePixelRatio || 1;
-    canvas.width  = canvas.clientWidth * dpi;
-    canvas.height = canvas.clientHeight * dpi;
+
+    const width  = canvas.clientWidth * dpi;
+    const height = canvas.clientHeight * dpi;
+
+    if (canvas.width !== width || canvas.height !== height) {
+        canvas.width  = width;
+        canvas.height = width;
+
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpi, dpi);
+    }
 }
 
 
@@ -203,7 +212,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
             case YAxisType.LEFT:
                 canvasX    = Math.round(graph.marginLeft) + 0.5;
                 tickLength = -graph.tickLength;
-                textShift  = -(graph.tickLength + 1);
+                textShift  = -(graph.tickLength + 2);
                 textAlign  = "right";
                 break;
             case YAxisType.RIGHT:
@@ -328,10 +337,10 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     var graph = {
         canvas:         canvas,
 
-        marginTop:      canvas.height * 0.13,
-        marginBottom:   canvas.height * 0.13,
-        marginLeft:     canvas.height * 0.20,
-        marginRight:    canvas.height * 0.20,
+        marginTop:      canvas.height * 0.15,
+        marginBottom:   canvas.height * 0.15,
+        marginLeft:     canvas.height * 0.21,
+        marginRight:    canvas.height * 0.21,
         color:          "#000",
 
         tickLength:     canvas.height * 0.030,
