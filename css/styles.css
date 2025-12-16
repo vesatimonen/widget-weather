@@ -161,44 +161,44 @@
 
 
 /* flex--col */
+.flex--col.flex--stretch-x {
+    align-items: stretch
+}
 .flex--col.flex--stretch-x > * {
     flex:       initial;
     align-self: stretch;
 }
-.flex--col.flex--stretch-x {
-    align-items: stretch
-}
 .flex--col.flex--stretch-y > * {
     flex: 1 1 0%
+    align-self: initial;
+}
+.flex--col.flex--stretch {
+    align-items: stretch;
+}
+.flex--col.flex--stretch > * {
+    flex: 1 1 0%;
 }
 
 
 /* flex--row */
-.flex--stretch-x2 > * {
+.flex--row.flex--stretch-x > * {
     flex: 1 1 0%;
 }
-    .trmnl .flex--row.flex--stretch-x>* {
-        flex: 1 1 0%
-    }
-    .trmnl .flex--row.flex--stretch-y {
-        align-items: stretch;
-        justify-content: center
-    }
+.flex--row.flex--stretch-y {
+    align-items: stretch;
+    justify-content: center;
+}
+.flex--row.flex--stretch-y > * {
+    align-self: stretch
+}
+.flex--row.flex--stretch {
+    align-items: stretch;
+}
+.flex--row.flex--stretch > * {
+    flex: 1 1 0%;
+    align-self: stretch
+}
 
-    .trmnl .flex--row.flex--stretch,.trmnl .flex--col.flex--stretch {
-        align-items: stretch
-    }
-
-    .trmnl .flex--row.flex--stretch>*,.trmnl .flex--col.flex--stretch>* {
-        flex: 1 1 0%
-    }
-
-
-
-
-
-
-/* ??? Flex stretch ??? */
 
 /*
 flex--top
