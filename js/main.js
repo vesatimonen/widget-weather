@@ -100,16 +100,14 @@ window.onload = async function() {
         // Get weather data (wait for results)
         await getWeatherData(location.latitude, location.longitude);
 
-        redraw();
     } catch (err) {
         console.error("Error initializing page:", err);
     }
-}
 
-
-
-window.resize = function() {
+    window.addEventListener("resize", redraw);
     redraw();
 }
+
+
 
 
