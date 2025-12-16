@@ -152,14 +152,10 @@
     justify-content:    center
 }
 
-.gap--ownxsmall {
+.gap--xsmall {
     gap:                5px;
 }
 
-
-.layout--ownstretch-x > * {
-    flex: 1 1 0%;
-}
 
 /* col */
 .layout--ownstretch-x1 > * {
