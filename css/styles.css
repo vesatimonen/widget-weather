@@ -167,6 +167,9 @@ html {
     gap:                5px;
 }
 
+.p--xsmall {
+    padding:            5px;
+}
 
 /* flex--col */
 .flex--col.flex--stretch-x {
