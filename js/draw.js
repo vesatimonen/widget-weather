@@ -24,9 +24,8 @@ function resizeCanvas(canvas) {
         canvas.style.width  = Math.round(cssWidth) + "px";
         canvas.style.height = Math.round(cssHeight) + "px";
 
-
-        console.log("Parent: ", parentRect.width, parentRect.height);
-        console.log("CSS: ", cssWidth, cssHeight);
+//        console.log("Parent: ", parentRect.width, parentRect.height);
+//        console.log("CSS: ", cssWidth, cssHeight);
     }
 }
 
