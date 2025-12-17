@@ -204,10 +204,9 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
                 tickText = String(hour % 24).padStart(2, "0");
             }
             ctx.textAlign    = "center";
-            ctx.textBaseline = "middle";
+            ctx.textBaseline = "bottom";
             ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
-            ctx.fillText(tickText, canvasX, (canvasY + graph.tickLength + canvas.height) / 2);
-//            ctx.fillText(tickText, canvasX, canvas.height);
+            ctx.fillText(tickText, canvasX, canvas.height);
         }
     }
 }
