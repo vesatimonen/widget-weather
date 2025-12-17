@@ -169,7 +169,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
     const ctx = canvas.getContext("2d");
 
     if (graph !== undefined && graph !== null && Object.keys(graph).length > 0) {
-        const canvasY = Math.round(canvas.height - graph.marginBottom) + 0.5;
+        const canvasY = graph.yOffset + Math.round(graph.yValueMin * graph.yCoeff);
 
         ctx.strokeStyle = graph.color;
         ctx.fillStyle   = graph.color;
