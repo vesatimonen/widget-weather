@@ -104,10 +104,15 @@ window.onload = async function() {
         console.error("Error initializing page:", err);
     }
 
+/*
+const ro = new ResizeObserver(() => {
+    redraw();
+});
+ro.observe(document.body)
+*/
+
     window.addEventListener("resize", redraw);
     redraw();
 }
-
-
 
 
