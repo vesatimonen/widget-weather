@@ -4,14 +4,17 @@ function resizeCanvas(canvas) {
     const rect = canvas.getBoundingClientRect();
 
     const width  = rect.width * dpi;
-    const height = rect.height * dpi;
-    if (canvas.width !== width || canvas.height !== height) {
-        canvas.width  = width;
-        canvas.height = height;
+    const height = Math.round(rect.height * dpi);
 
-        const ctx = canvas.getContext("2d");
-        ctx.scale(dpi, dpi);
-    }
+    canvas.style.width  = width  + "px";
+    canvas.style.height = height + "px";
+
+    canvas.width  = width;
+    canvas.height = height;
+
+
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpi, dpi);
 }
 
 
@@ -134,7 +137,7 @@ function drawGraphCurrentCursor(graph) {
 
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#000";
-    ctx.lineWidth   = 1;
+    ctx.lineWidth   = 1.0;
     ctx.setLineDash([1, 5]);
 
     ctx.beginPath();
@@ -155,7 +158,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
 
         ctx.strokeStyle = graph.color;
         ctx.fillStyle   = graph.color;
-        ctx.lineWidth   = 0.5;
+        ctx.lineWidth   = 1.0;
         ctx.setLineDash([]);
 
         ctx.beginPath();
@@ -225,7 +228,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
 
         ctx.strokeStyle = graph.color;
         ctx.fillStyle   = graph.color;
-        ctx.lineWidth   = 0.5;
+        ctx.lineWidth   = 1.0;
         ctx.setLineDash([]);
 
         ctx.beginPath();
@@ -361,9 +364,8 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     graph.xCoeff      = axisXRange / valueXRange;
     graph.xOffset     = axisXStart;
 
-    // Snap x-offset to closest viewport pixel
-    const viewportX = canvasRect.left + graph.xOffset;
-    const xCorrection = (Math.round(viewportX + 0.5) - 0.5) - viewportX;
+    // Snap x-offset to closest half pixel
+    const xCorrection = (Math.round(graph.xOffset + 0.5) - 0.5) - graph.xOffset;
     graph.xOffset += xCorrection;
 
     // Initialize y min/max values
@@ -400,9 +402,8 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     graph.yCoeff      = axisYRange / valueYRange;
     graph.yOffset     = axisYStart - graph.yCoeff * graph.yValueMin;
 
-    // Snap y-offset to nearest viewport pixel
-    const viewportY = canvasRect.top + graph.yOffset;
-    const yCorrection = (Math.round(viewportY + 0.5) - 0.5) - viewportY;
+    // Snap y-offset to closest half pixel
+    const yCorrection = (Math.round(graph.yOffset + 0.5) - 0.5) - graph.yOffset;
     graph.yOffset += yCorrection;
 
     return graph;
