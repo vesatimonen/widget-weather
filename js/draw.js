@@ -151,7 +151,7 @@ function drawGraphCurrentCursor(graph) {
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#000";
     ctx.lineWidth   = 1.0;
-    ctx.setLineDash([1, 5]);
+    ctx.setLineDash([1, 2]);
 
     ctx.beginPath();
     ctx.moveTo(canvasX, canvasYStart);
