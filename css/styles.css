@@ -73,9 +73,6 @@ html {
 
 .widget.graph {
     aspect-ratio:   auto;
-
-    max-height:     100%;
-    max-width:      100%;
 }
 
 .widget-header {
@@ -108,7 +105,7 @@ html {
     position:       absolute;
     top:            50%;
     left:           50%;
-    transform:      translate(-50%, -52%);
+    transform:      translate(-50%, -53%);
 
     background:     none;
 }
