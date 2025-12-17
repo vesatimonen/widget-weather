@@ -233,7 +233,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
                 textAlign  = "right";
                 break;
             case YAxisType.RIGHT:
-                canvasX    = Math.round(canvas.width - graph.marginRight) + 0.5;
+                canvasX    = graph.xOffset + Math.round(graph.xValueMax * graph.xCoeff);
                 tickLength = graph.tickLength;
                 textShift  = graph.fontSize * 1.8;
                 textAlign  = "right";
