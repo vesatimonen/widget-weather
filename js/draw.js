@@ -227,7 +227,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
         var textShift = 0;
         switch (yAxisType) {
             case YAxisType.LEFT:
-                canvasX    = Math.round(graph.marginLeft) + 0.5;
+                canvasX    = graph.xOffset;
                 tickLength = -graph.tickLength;
                 textShift  = -(graph.tickLength + 2);
                 textAlign  = "right";
