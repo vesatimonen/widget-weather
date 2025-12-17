@@ -4,7 +4,8 @@ function resizeCanvas(canvas) {
     const parentRect = parent.getBoundingClientRect();
     const rect       = canvas.getBoundingClientRect();
 
-    const dpr = window.devicePixelRatio || 1;
+//    const dpr = window.devicePixelRatio || 1;
+    const dpr = 1;
 
     // Backing store size (physical pixels)
     const width  = Math.round(parentRect.width  * dpr);
@@ -65,7 +66,7 @@ function getWeatherIcon(code, is_day)  {
     return weatherIconsURL + fileName;
 }
 function drawCurrentWeather() {
-    document.getElementById("weather-header").innerHTML = "HELSINKI";
+    document.getElementById("weather-header").innerHTML = "";
     document.getElementById("daily-sunrise").innerHTML  = weatherData.daily.sunrise[0].split("T")[1];
     document.getElementById("daily-sunset").innerHTML   = weatherData.daily.sunset[0].split("T")[1];
     document.getElementById("current-weather-img").src  = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
