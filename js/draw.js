@@ -68,10 +68,11 @@ function getWeatherIcon(code, is_day)  {
     return weatherIconsURL + fileName;
 }
 function drawCurrentWeather() {
-    document.getElementById("daily-sunrise").innerHTML  = weatherData.daily.sunrise[0].split("T")[1];
-    document.getElementById("daily-sunset").innerHTML   = weatherData.daily.sunset[0].split("T")[1];
-    document.getElementById("current-weather-img").src  = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
-    document.getElementById("current-probability").innerHTML = weatherData.current.precipitation_probability  + "%";
+    document.getElementById("daily-sunrise").innerHTML         = weatherData.daily.sunrise[0].split("T")[1];
+    document.getElementById("daily-sunset").innerHTML          = weatherData.daily.sunset[0].split("T")[1];
+    document.getElementById("current-weather-img").src         = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
+    document.getElementById("current-precipitation").innerHTML = weatherData.current.precipitation;
+    document.getElementById("current-probability").innerHTML   = weatherData.current.precipitation_probability  + "%";
 
 }
 
