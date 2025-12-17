@@ -7,26 +7,26 @@ function resizeCanvas(canvas) {
     const dpr = window.devicePixelRatio || 1;
 
     // Round CSS pixels to nearest integer
-    const cssWidth  = Math.round(parentRect.width);
-    const cssHeight = Math.round(parentRect.height);
+    const cssWidth  = parentRect.width;
+    const cssHeight = parentRect.height;
 
     // Backing store size (physical pixels)
     const width  = cssWidth * dpr;
     const height = cssHeight * dpr;
 
     if (canvas.width !== width || canvas.height !== height) {
-        canvas.width  = width;
-        canvas.height = height;
+        canvas.width  = Math.round(width);
+        canvas.height = Math.round(height);
 
         const ctx = canvas.getContext("2d");
 
-        // Reset transform before scaling
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-//        ctx.scale(dpr, dpr);
-
         // CSS size (unchanged)
-        canvas.style.width  = cssWidth + "px";
-        canvas.style.height = cssHeight + "px";
+        canvas.style.width  = Math.round(cssWidth) + "px";
+        canvas.style.height = Math.round(cssHeight) + "px";
+
+
+        console.log("Parent: ", parentRect.width, parentRect.height);
+        console.log("CSS: ", cssWidth, cssHeight);
     }
 }
 
@@ -277,7 +277,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
         }
 
         // Y-axis unit
-        const canvasY = graph.marginTop / 2;
+        const canvasY = Math.round(graph.marginTop / 2);
 
         ctx.textAlign    = "center";
         ctx.textBaseline = "middle";
