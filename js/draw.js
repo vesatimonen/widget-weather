@@ -363,14 +363,8 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
 
     // Snap x-offset to closest viewport pixel
     const viewportX = canvasRect.left + graph.xOffset;
-    const xCorrection = Math.round(viewportX) - viewportX;
-console.log(graph.xOffset);
+    const xCorrection = (Math.round(viewportX + 0.5) - 0.5) - viewportX;
     graph.xOffset += xCorrection;
-    graph.xOffset += 0.5;
-console.log(graph.xOffset);
-console.log("--");
-
- + canvasRect.left
 
     // Initialize y min/max values
     graph.yValueMin = +10000000;
@@ -406,9 +400,10 @@ console.log("--");
     graph.yCoeff      = axisYRange / valueYRange;
     graph.yOffset     = axisYStart - graph.yCoeff * graph.yValueMin;
 
-// Snap x-offset to nearest viewport pixel
-//console.log(graph.yOffset + canvasRect.top);
-
+    // Snap y-offset to nearest viewport pixel
+    const viewportY = canvasRect.top + graph.yOffset;
+    const yCorrection = (Math.round(viewportY + 0.5) - 0.5) - viewportY;
+    graph.yOffset += yCorrection;
 
     return graph;
 }
