@@ -1,13 +1,18 @@
 // Set canvas size
 function resizeCanvas(canvas) {
+    const parent = canvas.parentElement;
+
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
 
     // Backing store size (physical pixels)
-    const width  = Math.round(rect.width  * dpr);
-    const height = Math.round(rect.height * dpr);
+    const width  = Math.round(parentRect.width  * dpr);
+    const height = Math.round(parentRect.height * dpr);
 
 console.log("resize");
+console.log(parentRect.height, rect.height);
+
 
 //    if (canvas.width !== width || canvas.height !== height)
     {
