@@ -7,9 +7,13 @@ function resizeCanvas(canvas) {
 //    const dpr = window.devicePixelRatio || 1;
     const dpr = 1;
 
+    // Round CSS pixels to nearest integer
+    const cssWidth  = Math.round(parentRect.width);
+    const cssHeight = Math.round(parentRect.height);
+
     // Backing store size (physical pixels)
-    const width  = Math.round(parentRect.width  * dpr);
-    const height = Math.round(parentRect.height * dpr);
+    const width  = cssWidth * dpr;
+    const height = cssHeight * dpr;
 
     if (canvas.width !== width || canvas.height !== height) {
         canvas.width  = width;
@@ -22,8 +26,8 @@ function resizeCanvas(canvas) {
         ctx.scale(dpr, dpr);
 
         // CSS size (unchanged)
-        canvas.style.width  = (width) + "px";
-        canvas.style.height = (height) + "px";
+        canvas.style.width  = cssWidth + "px";
+        canvas.style.height = cssHeight + "px";
     }
 }
 
