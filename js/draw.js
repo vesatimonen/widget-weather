@@ -1,20 +1,13 @@
 // Set canvas size
 function resizeCanvas(canvas) {
     const dpi = window.devicePixelRatio || 1;
-
     const rect = canvas.getBoundingClientRect();
 
     const width  = rect.width * dpi;
     const height = rect.height * dpi;
-
     if (canvas.width !== width || canvas.height !== height) {
         canvas.width  = width;
         canvas.height = height;
-
-console.log(rect.left, rect.top, rect.width, rect.height);
-// ??? Aseta style tässä?
-//canvas.style.width  = width + "px";
-//canvas.style.height = height + "px";
 
         const ctx = canvas.getContext("2d");
         ctx.scale(dpi, dpi);
@@ -354,17 +347,30 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
         fontSize:       canvas.height * 0.100
     };
 
+    const canvasRect = canvas.getBoundingClientRect();
+
     // Initialize x-axis min/max values
     graph.xValueMin = 0;
     graph.xValueMax = xValues.length - 1;
 
     // Calculate x offset and coeff
-    const axisXStart  = Math.round(graph.marginLeft) + 0.5;
-    const axisXEnd    = Math.round(canvas.width - graph.marginRight) + 0.5;
+    const axisXStart  = graph.marginLeft;
+    const axisXEnd    = canvas.width - graph.marginRight;
     const valueXRange = graph.xValueMax - graph.xValueMin;
     const axisXRange  = axisXEnd - axisXStart;
     graph.xCoeff      = axisXRange / valueXRange;
     graph.xOffset     = axisXStart;
+
+    // Snap x-offset to closest viewport pixel
+    const viewportX = canvasRect.left + graph.xOffset;
+    const xCorrection = Math.round(viewportX) - viewportX;
+console.log(graph.xOffset);
+    graph.xOffset += xCorrection;
+    graph.xOffset += 0.5;
+console.log(graph.xOffset);
+console.log("--");
+
+ + canvasRect.left
 
     // Initialize y min/max values
     graph.yValueMin = +10000000;
@@ -393,13 +399,16 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     }
 
     // Calculate y offset and coeff
-    const axisYStart  = Math.round(canvas.height - graph.marginBottom) + 0.5;
-    const axisYEnd    = Math.round(graph.marginTop) + 0.5;
-
+    const axisYStart  = canvas.height - graph.marginBottom;
+    const axisYEnd    = graph.marginTop;
     const valueYRange = graph.yValueMax - graph.yValueMin;
     const axisYRange  = axisYEnd - axisYStart;
     graph.yCoeff      = axisYRange / valueYRange;
-    graph.yOffset     = Math.round(axisYStart - graph.yCoeff * graph.yValueMin) + 0.5;
+    graph.yOffset     = axisYStart - graph.yCoeff * graph.yValueMin;
+
+// Snap x-offset to nearest viewport pixel
+//console.log(graph.yOffset + canvasRect.top);
+
 
     return graph;
 }
