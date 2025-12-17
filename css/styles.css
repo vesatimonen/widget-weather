@@ -85,6 +85,9 @@ html {
     top:            0%;
     width:          100%;
 
+    padding-left:   1vw;
+    padding-right:  1vw;
+
     z-index:        1;
 }
 
