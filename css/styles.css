@@ -2,8 +2,6 @@
 :root {
     --screen-max-width: 640px;
     --screen-min-width: 320px;
-        --screen-w: 800px;
-        --screen-h: 480px;
 }
 
 
@@ -33,8 +31,10 @@ html {
 /* ELEMENTS */
 .screen {
     /* Screen size */
+    width:              calc(100vw);
 /*
     width:              calc(100vw - 10px);
+
     max-width:          var(--screen-max-width);
     min-width:          var(--screen-min-width);
 
@@ -44,7 +44,6 @@ html {
     background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
 
     height:           100%;
-    width:            100%;
 }
 
 
