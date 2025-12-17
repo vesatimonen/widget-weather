@@ -4,8 +4,7 @@ function resizeCanvas(canvas) {
     const parentRect = parent.getBoundingClientRect();
     const rect       = canvas.getBoundingClientRect();
 
-//    const dpr = window.devicePixelRatio || 1;
-    const dpr = 1;
+    const dpr = window.devicePixelRatio || 1;
 
     // Round CSS pixels to nearest integer
     const cssWidth  = Math.round(parentRect.width);
@@ -23,7 +22,7 @@ function resizeCanvas(canvas) {
 
         // Reset transform before scaling
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.scale(dpr, dpr);
+//        ctx.scale(dpr, dpr);
 
         // CSS size (unchanged)
         canvas.style.width  = cssWidth + "px";
