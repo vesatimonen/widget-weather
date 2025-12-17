@@ -1,20 +1,26 @@
 // Set canvas size
 function resizeCanvas(canvas) {
-    const dpi = window.devicePixelRatio || 1;
+    const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
 
-    const width  = rect.width * dpi;
-    const height = Math.round(rect.height * dpi);
+    // CSS size (unchanged)
+    canvas.style.width  = rect.width + "px";
+    canvas.style.height = rect.height + "px";
 
-    canvas.style.width  = width  + "px";
-    canvas.style.height = height + "px";
+    // Backing store size (physical pixels)
+    const width  = Math.round(rect.width  * dpr);
+    const height = Math.round(rect.height * dpr);
 
-    canvas.width  = width;
-    canvas.height = height;
+    if (canvas.width !== width || canvas.height !== height) {
+        canvas.width  = width;
+        canvas.height = height;
 
+        const ctx = canvas.getContext("2d");
 
-    const ctx = canvas.getContext("2d");
-    ctx.scale(dpi, dpi);
+        // Reset transform before scaling
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+    }
 }
 
 
@@ -306,7 +312,7 @@ function drawGraphData(graph, yValues, graphType) {
         case GraphType.LINE:
         case GraphType.LINE_DASHED:
             ctx.strokeStyle = "#000";
-            ctx.lineWidth   = 1.0;
+            ctx.lineWidth   = 2.0;
             if (graphType == GraphType.LINE_DASHED) {
                 ctx.setLineDash([1, 3]);
             } else {
