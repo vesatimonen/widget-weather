@@ -1,21 +1,16 @@
 // Set canvas size
 function resizeCanvas(canvas) {
-    const parent = canvas.parentElement;
+    const parent     = canvas.parentElement;
+    const parentRect = parent.getBoundingClientRect();
+    const rect       = canvas.getBoundingClientRect();
 
     const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    const parentRect = parent.getBoundingClientRect();
 
     // Backing store size (physical pixels)
     const width  = Math.round(parentRect.width  * dpr);
     const height = Math.round(parentRect.height * dpr);
 
-console.log("resize");
-console.log(parentRect.height, rect.height);
-
-
-//    if (canvas.width !== width || canvas.height !== height)
-    {
+    if (canvas.width !== width || canvas.height !== height) {
         canvas.width  = width;
         canvas.height = height;
 
@@ -24,13 +19,11 @@ console.log(parentRect.height, rect.height);
         // Reset transform before scaling
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(dpr, dpr);
-    }
 
-    // CSS size (unchanged)
-    canvas.style.width  = (width) + "px";
-    canvas.style.height = (height) + "px";
-//    canvas.style.width  = "100%";
-//    canvas.style.height = "100%";
+        // CSS size (unchanged)
+        canvas.style.width  = (width) + "px";
+        canvas.style.height = (height) + "px";
+    }
 }
 
 
