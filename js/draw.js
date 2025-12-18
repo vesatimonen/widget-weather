@@ -520,8 +520,8 @@ function drawGraphs() {
     drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_GRAYED);
     drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
     drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_GRAYED);
-//    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
-        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
+    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
+//        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
     // Draw x-axis
