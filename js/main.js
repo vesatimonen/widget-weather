@@ -1,6 +1,11 @@
 const strorageName = "widget-weather";
 
 
+
+async function getLocationName() {
+    return null;
+}
+
 /*****************************************************************************
 * Get current location
 *****************************************************************************/
@@ -95,9 +100,17 @@ window.onload = async function() {
         }
 
         // Get weather data (wait for results)
-        document.getElementById("header-widget").innerHTML = "Loading data...";
+        document.getElementById("header-widget").innerHTML = "Loading weather data...";
         await getWeatherData(location.latitude, location.longitude);
 
+        // Get current location (wait for result)
+        document.getElementById("header-widget").innerHTML = "Loading location name...";
+        let name = await getLocationName();
+        if (name == null) {
+            name = "UNKNOWN PLACE";
+        }
+
+        document.getElementById("header-widget").innerHTML = name;
     } catch (err) {
         console.error("Error initializing page:", err);
     }
@@ -108,8 +121,7 @@ window.onload = async function() {
     // Show data widgets
     document.getElementById("data-widgets").style.visibility = "visible";
 
-    // Show data widgets
-    document.getElementById("header-widget").innerHTML = "WIDGET WEATHER";
+//    document.getElementById("header-widget").innerHTML = "WIDGET WEATHER";
 }
 
 
