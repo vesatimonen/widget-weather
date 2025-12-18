@@ -59,8 +59,9 @@ body {
 .widget.title {
     aspect-ratio:   auto;
 
-    font-size:      12vw;
-    font-weight:    400;
+/*    font-size:      8vw;
+    font-weight:    200; */
+    padding: 1vw;
 }
 
 .widget.graph {
