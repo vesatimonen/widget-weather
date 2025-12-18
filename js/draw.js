@@ -37,9 +37,9 @@ function drawHeader() {
                                                        ".." +
                                                        weatherData.daily.sunset[0].split("T")[1] +
                                                        "  <br>Sunshine: " +
-                                                       weatherData.daily.sunshine_duration[0] +
+                                                       Math.round(weatherData.daily.sunshine_duration[0]) / 60 +
                                                        "/" +
-                                                       weatherData.daily.daylight_duration[0] +
+                                                       Math.round(weatherData.daily.daylight_duration[0] / 60) + "min" +
                                                        "  <br>Temperature: " +
                                                        weatherData.daily.temperature_2m_min[0] +
                                                        ".." +

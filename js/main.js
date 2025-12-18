@@ -88,6 +88,9 @@ function parseOptions() {
 *****************************************************************************/
 
 function redraw() {
+    // Draw header information
+    drawHeader();
+
     // Fix canvas sizes
     const canvases = [
         ".wind-widget-canvas",
@@ -99,9 +102,6 @@ function redraw() {
     for (let index = 0; index < canvases.length; index++) {
         resizeCanvas(document.querySelector(canvases[index]));
     }
-
-    // Draw header information
-    drawHeader();
 
     // Draw current information into small widgets
     drawCurrentWeather();
