@@ -36,7 +36,8 @@ function drawHeader() {
                                                        + weatherData.daily.sunrise[0].split("T")[1]
                                                        + ".."
                                                        + weatherData.daily.sunset[0].split("T")[1]
-                                                       + " Sunshine: "
+                                                       + " • "
+                                                       + "Sunshine: "
                                                        + Math.round(weatherData.daily.sunshine_duration[0]) / 60
                                                        + "/"
                                                        + Math.round(weatherData.daily.daylight_duration[0] / 60) + "min"
@@ -45,10 +46,12 @@ function drawHeader() {
                                                        + " ("
                                                        + weatherData.daily.precipitation_hours[0] + weatherData.daily_units.precipitation_hours
                                                        + ")"
+                                                       + " • "
                                                        + " Temperature: "
                                                        + weatherData.daily.temperature_2m_min[0]
                                                        + ".."
                                                        + weatherData.daily.temperature_2m_max[0] + weatherData.daily_units.temperature_2m_max
+                                                       + " • "
                                                        + " Humidity: "
                                                        + weatherData.daily.relative_humidity_2m_min[0]
                                                        + ".."
