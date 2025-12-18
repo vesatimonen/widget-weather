@@ -92,6 +92,9 @@ function redraw() {
         resizeCanvas(document.querySelector(canvases[index]));
     }
 
+    // Draw header information
+    drawHeader();
+
     // Draw current information into small widgets
     drawCurrentWeather();
     drawCurrentTemperature();

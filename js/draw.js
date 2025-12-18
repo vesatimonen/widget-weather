@@ -30,6 +30,13 @@ function resizeCanvas(canvas) {
 }
 
 
+// *** Header *******************************************************
+function drawHeader() {
+    document.getElementById("daily-sunrise").innerHTML              = weatherData.daily.sunrise[0].split("T")[1];
+    document.getElementById("daily-sunset").innerHTML               = weatherData.daily.sunset[0].split("T")[1];
+}
+
+
 // *** Current weather *******************************************************
 const weatherIconsURL = "https://nrkno.github.io/yr-weather-symbols/symbols/darkmode/";
 const weatherIcons = {
@@ -68,13 +75,11 @@ function getWeatherIcon(code, is_day)  {
     return weatherIconsURL + fileName;
 }
 function drawCurrentWeather() {
-    document.getElementById("daily-sunrise").innerHTML              = weatherData.daily.sunrise[0].split("T")[1];
-    document.getElementById("daily-sunset").innerHTML               = weatherData.daily.sunset[0].split("T")[1];
+    document.getElementById("precipitation-header").innerHTML       = "PRECIPITATION";
     document.getElementById("current-weather-img").src              = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
     document.getElementById("current-precipitation").innerHTML      = weatherData.current.precipitation;
     document.getElementById("current-precipitation-unit").innerHTML = weatherData.current_units.precipitation;
     document.getElementById("current-probability").innerHTML        = weatherData.current.precipitation_probability  + "%";
-
 }
 
 
