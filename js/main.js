@@ -2,7 +2,14 @@ const strorageName = "widget-weather";
 
 
 
-async function getLocationName() {
+async function getLocationName(latitude, longitude) {
+  try {
+    const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
+    locationInfo = await response.json();
+console.log(locationInfo);
+  } catch (err) {
+    console.error(err);
+  }
     return null;
 }
 
@@ -105,7 +112,7 @@ window.onload = async function() {
 
         // Get current location (wait for result)
         document.getElementById("header-widget").innerHTML = "Loading location name...";
-        let name = await getLocationName();
+        let name = await getLocationName(location.latitude, location.longitude);
         if (name == null) {
             name = "UNKNOWN PLACE";
         }
