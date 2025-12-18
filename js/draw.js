@@ -310,7 +310,7 @@ function drawGraphData(graph, yValues, graphType) {
                 const canvasW = Math.round(graph.xCoeff * 1.0);
                 const canvasH = Math.round(-graph.yCoeff * (yValue - graph.yValueMin));
 
-                ctx.fillStyle   = "#888";
+                ctx.fillStyle   = "#000C";
                 ctx.fillRect(canvasX, canvasY,
                              canvasW, canvasH);
                 ctx.fill();
@@ -320,9 +320,9 @@ function drawGraphData(graph, yValues, graphType) {
         case GraphType.LINE:
         case GraphType.LINE_DASHED:
             ctx.strokeStyle = "#000";
-            ctx.lineWidth   = 2.0;
+            ctx.lineWidth   = canvas.height * 0.015;
             if (graphType == GraphType.LINE_DASHED) {
-                ctx.setLineDash([1, 3]);
+                ctx.setLineDash([ctx.lineWidth, 2 * ctx.lineWidth]);
             } else {
                 ctx.setLineDash([]);
             }
