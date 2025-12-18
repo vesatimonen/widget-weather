@@ -1,7 +1,7 @@
-# LEXICORIUM
+# Widget weather
 
-LEXICORIUM is a multi-challenge word game made with HTML, CSS and native JavaScript.
+Weather data from Open-Meteo weather service.
 
-<img src="images/capture.png" alt="Game example" />
+<img src="images/capture.png" alt="Example" />
 
-Play online https://vesatimonen.github.io/lexicorium/
+Use online https://vesatimonen.github.io/widget-weather/
