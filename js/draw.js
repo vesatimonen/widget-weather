@@ -292,7 +292,8 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
 const GraphType = Object.freeze({
   BAR:         "BAR",
   LINE:        "LINE",
-  LINE_DASHED: "LINE_DASHED"
+  LINE_DASHED: "LINE_DASHED",
+  LINE_GRAYED: "LINE_GRAYED"
 });
 function drawGraphData(graph, yValues, graphType) {
     const canvas = graph.canvas;
@@ -319,11 +320,19 @@ function drawGraphData(graph, yValues, graphType) {
             break;
         case GraphType.LINE:
         case GraphType.LINE_DASHED:
-            ctx.strokeStyle = "#000";
+        case GraphType.LINE_GRAYED:
             ctx.lineWidth   = canvas.height * 0.015;
+
+            if (graphType == GraphType.LINE) {
+                ctx.strokeStyle = "#000";
+                ctx.setLineDash([]);
+            }
             if (graphType == GraphType.LINE_DASHED) {
+                ctx.strokeStyle = "#000";
                 ctx.setLineDash([ctx.lineWidth, 2 * ctx.lineWidth]);
-            } else {
+            }
+            if (graphType == GraphType.LINE_GRAYED) {
+                ctx.strokeStyle = "#0003";
                 ctx.setLineDash([]);
             }
 
@@ -441,14 +450,14 @@ function drawGraphs() {
     // Draw data
     drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.LINE);
 //        drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.BAR);
-    drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_DASHED);
+    drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_GRAYED);
     drawGraphData(temperatureGraph,       weatherData.hourly.temperature_2m,            GraphType.LINE);
-    drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_DASHED);
+    drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_GRAYED);
     drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
-    drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_DASHED);
+    drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_GRAYED);
     drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
 //        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
-    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_DASHED);
+    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
     // Draw x-axis
     drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
