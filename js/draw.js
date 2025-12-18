@@ -359,11 +359,12 @@ function drawGraphData(graph, yValues, graphType) {
         case GraphType.BAR:
         default:
             for (let index = 0; index < yValues.length; index++) {
-                const xValue = index - 0.5;
-                const yValue = yValues[index];
+                const xValueStart = index - 0.5;
+                const xValueEnd   = index + 0.5;
+                const yValue      = yValues[index];
 
-                const canvasX = Math.round(graph.xOffset + graph.xCoeff * xValue);
-                const canvasW = Math.round(graph.xOffset + graph.xCoeff * (xValue + 1)) - canvasX;
+                const canvasX = Math.round(graph.xOffset + graph.xCoeff * xValueStart);
+                const canvasW = Math.round(graph.xOffset + graph.xCoeff * xValueEnd) - canvasX;
 
                 const canvasY = graph.yOffset + Math.round(graph.yCoeff * graph.yValueMin + 0.5) - 0.5;
                 const canvasH = Math.round(graph.yCoeff * yValue);
