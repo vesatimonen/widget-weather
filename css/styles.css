@@ -1,9 +1,4 @@
 
-:root {
-    --screen-max-width: 640px;
-    --screen-min-width: 320px;
-}
-
 
 /*** Global default style ***/
 * {
@@ -37,25 +32,6 @@ body {
 }
 
 /* ELEMENTS */
-.screen {
-    /* Screen size */
-    width:              calc(100vw);
-    height:             100%;
-
-/*
-    width:              calc(100vw - 10px);
-
-    max-width:          var(--screen-max-width);
-    min-width:          var(--screen-min-width);
-
-    margin-left:        auto;
-    margin-right:       auto;
-*/
-    background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
-}
-
-
-
 .widget {
     font-size:      4vw;
     font-weight:    200;
@@ -164,12 +140,17 @@ body {
 .flex--col {
     flex-direction:     column;
     align-items:        center
+    min-width:          fit-content;
+    min-height:         0;
 }
 
 .flex--row {
     flex-direction:     row;
     align-items:        center;
     justify-content:    center
+
+    min-width:          0;
+    min-height:         fit-content;
 }
 
 .gap--xsmall {
