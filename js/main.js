@@ -1,15 +1,47 @@
 const strorageName = "widget-weather";
 
 
-
 async function getLocationName(latitude, longitude) {
-  try {
-    const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
-    locationInfo = await response.json();
-console.log(locationInfo);
-  } catch (err) {
-    console.error(err);
-  }
+    try {
+
+latitude = 60.1699;
+longitude = 24.9384;
+
+
+        const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
+        locationInfo = await response.json();
+        console.log(locationInfo.address);
+        console.log(locationInfo.address.quarter);
+        console.log(locationInfo.address.suburb);
+        console.log(locationInfo.address.city);
+        console.log(locationInfo.address.country);
+
+        const name = (locationInfo?.address?.quarter ?? "") +
+                     (locationInfo?.address?.suburb ?? "") +
+                     (locationInfo?.address?.city ?? "") +
+                     (locationInfo?.address?.country ?? "");
+
+        return name;
+
+/*
+  "address": {
+    "suburb": "City Centre",
+
+    "road": "Kaivokatu",
+    "city_district": "Southern major district",
+    "city": "Helsinki",
+    "municipality": "Helsinki sub-region",
+    "state": "Uusimaa",
+    "ISO3166-2-lvl4": "FI-18",
+    "region": "Mainland Finland",
+    "postcode": "00101",
+    "country": "Finland",
+    "country_code": "fi"
+  },
+*/
+    } catch (err) {
+        console.error(err);
+    }
     return null;
 }
 
@@ -17,25 +49,25 @@ console.log(locationInfo);
 * Get current location
 *****************************************************************************/
 async function getCurrentLocation() {
-  try {
-    if (!("geolocation" in navigator)) {
-      throw new Error("Geolocation is not supported by this browser.");
+    try {
+        if (!("geolocation" in navigator)) {
+            throw new Error("Geolocation is not supported by this browser.");
+        }
+
+        // Wrap getCurrentPosition in a Promise so we can use await
+        const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+
+        // Extract latitude and longitude
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        return { latitude, longitude }; // return as object
+    } catch (err) {
+        console.warn("Failed to get current location:", err);
+        return null; // or handle it in another way
     }
-
-    // Wrap getCurrentPosition in a Promise so we can use await
-    const position = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-
-    // Extract latitude and longitude
-    const latitude  = position.coords.latitude;
-    const longitude = position.coords.longitude;
-
-    return { latitude, longitude }; // return as object
-  } catch (err) {
-    console.warn("Failed to get current location:", err);
-    return null; // or handle it in another way
-  }
 }
 
 
@@ -44,12 +76,12 @@ async function getCurrentLocation() {
 *****************************************************************************/
 let weatherData = undefined;
 async function getWeatherData(latitude, longitude) {
-  try {
-    const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude +'&timezone=auto&temperature_unit=celsius&wind_speed_unit=ms&precipitation_unit=mm&forecast_days=2&current=is_day,uv_index,temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,apparent_temperature,relative_humidity_2m,cloud_cover,surface_pressure,precipitation_probability&hourly=is_day,uv_index,temperature_2m,precipitation_probability,relative_humidity_2m,apparent_temperature,precipitation,weather_code,surface_pressure,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m&daily=sunrise,sunset');
-    weatherData = await response.json();
-  } catch (err) {
-    console.error(err);
-  }
+    try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude +'&timezone=auto&temperature_unit=celsius&wind_speed_unit=ms&precipitation_unit=mm&forecast_days=2&current=is_day,uv_index,temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,apparent_temperature,relative_humidity_2m,cloud_cover,surface_pressure,precipitation_probability&hourly=is_day,uv_index,temperature_2m,precipitation_probability,relative_humidity_2m,apparent_temperature,precipitation,weather_code,surface_pressure,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m&daily=sunrise,sunset');
+        weatherData = await response.json();
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 
