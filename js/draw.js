@@ -306,10 +306,11 @@ function drawGraphData(graph, yValues, graphType) {
                 const xValue = index - 0.5;
                 const yValue = yValues[index];
 
-                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue);
-                const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
-                const canvasW = Math.round(graph.xCoeff * 1.0);
-                const canvasH = Math.round(-graph.yCoeff * (yValue - graph.yValueMin));
+                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue + 0.5) - 0.5;
+                const canvasW = Math.ceil(graph.xCoeff * 1.0);
+
+                const canvasY = graph.yOffset + Math.round(graph.yCoeff * graph.yValueMin + 0.5) - 0.5;
+                const canvasH = Math.round(graph.yCoeff * yValue);
 
                 ctx.fillStyle   = "#000C";
                 ctx.fillRect(canvasX, canvasY,
@@ -448,15 +449,15 @@ function drawGraphs() {
     drawGraphCurrentCursor(uvGraph);
 
     // Draw data
-    drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.LINE);
-//        drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.BAR);
+//    drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.LINE);
+        drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.BAR);
     drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_GRAYED);
     drawGraphData(temperatureGraph,       weatherData.hourly.temperature_2m,            GraphType.LINE);
     drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_GRAYED);
     drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
     drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_GRAYED);
-    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
-//        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
+//    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
+        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
     // Draw x-axis
