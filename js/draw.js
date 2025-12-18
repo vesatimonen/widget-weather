@@ -32,15 +32,30 @@ function resizeCanvas(canvas) {
 
 // *** Header *******************************************************
 function drawHeader() {
+
+    const sunshine_hours   = Math.round(weatherData.daily.sunshine_duration[0] / 3600);
+    const sunshine_minutes = Math.floor((weatherData.daily.sunshine_duration[0] % 3600) / 60);
+
+    const daylight_hours   = Math.round(weatherData.daily.daylight_duration[0] / 3600);
+    const daylight_minutes = Math.floor((weatherData.daily.daylight_duration[0] % 3600) / 60);
+
+    const sunshine_str = sunshine_hours.toString().padStart(2, '0')
+                       + ":"
+                       + sunshine_minutes.toString().padStart(2, '0');
+    const daylight_str = daylight_hours.toString().padStart(2, '0')
+                       + ":"
+                       + daylight_minutes.toString().padStart(2, '0');
+
+
     document.getElementById("header-data").innerHTML = "Day: "
                                                        + weatherData.daily.sunrise[0].split("T")[1]
                                                        + ".."
                                                        + weatherData.daily.sunset[0].split("T")[1]
                                                        + " • "
                                                        + "Sunshine: "
-                                                       + Math.round(weatherData.daily.sunshine_duration[0]) / 60
+                                                       + sunshine_str
                                                        + "/"
-                                                       + Math.round(weatherData.daily.daylight_duration[0] / 60) + "min"
+                                                       + daylight_str
                                                        + " <br>Precipitation: "
                                                        + weatherData.daily.precipitation_sum[0] + weatherData.daily_units.precipitation_sum
                                                        + " ("
