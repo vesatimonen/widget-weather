@@ -82,7 +82,7 @@ function redraw() {
     drawGraphs();
 
     // Show window
-    document.getElementById("screen").style.visibility = "visible";
+    document.getElementById("data-widgets").style.visibility = "visible";
 }
 
 window.onload = async function() {
