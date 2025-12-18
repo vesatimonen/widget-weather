@@ -80,12 +80,12 @@ function redraw() {
 
     // Draw forecast graphs
     drawGraphs();
-
-    // Show window
-    document.getElementById("data-widgets").style.visibility = "visible";
 }
 
 window.onload = async function() {
+    // Show data widgets
+    document.getElementById("header-widget").style.visibility = "visible";
+
     try {
         // Parse options
         parseOptions();
@@ -106,6 +106,9 @@ window.onload = async function() {
 
     window.addEventListener("resize", redraw);
     redraw();
+
+    // Show data widgets
+    document.getElementById("data-widgets").style.visibility = "visible";
 }
 
 

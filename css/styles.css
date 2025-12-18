@@ -56,6 +56,13 @@ body {
     z-index:        0;
 }
 
+.widget.title {
+    aspect-ratio:   auto;
+
+    font-size:      12vw;
+    font-weight:    400;
+}
+
 .widget.graph {
     aspect-ratio:   auto;
 }
@@ -124,8 +131,11 @@ body {
 
 /* FEATURES */
 .stretch {
-    flex:               1 1 0%;
-    min-height:         fit-content;
+    flex-grow:          1;
+    flex-shrink:        1;
+    flex-basis:         content;
+
+/*  flex:               1 1 fit-content; */
 }
 
 .truncate {
