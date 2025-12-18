@@ -132,9 +132,11 @@ body {
 /* FEATURES */
 .stretch {
     flex-grow:          1;
-    flex-shrink:        0;
-    flex-basis:         content;
-    flex-direction:     column;
+    flex-shrink:        1;
+    flex-basis:         min-content;
+
+    min-height:         min-content;
+    max-height:         min-content;
 }
 
 .truncate {
