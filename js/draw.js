@@ -56,11 +56,13 @@ function drawHeader() {
                                                        + sunshine_str
                                                        + "/"
                                                        + daylight_str
+/*
                                                        + " <br>Precipitation: "
                                                        + weatherData.daily.precipitation_sum[0] + weatherData.daily_units.precipitation_sum
                                                        + " ("
                                                        + weatherData.daily.precipitation_hours[0] + weatherData.daily_units.precipitation_hours
                                                        + ")"
+*/
 /*
                                                        + " • "
                                                        + " Temperature: "
