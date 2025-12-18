@@ -299,6 +299,9 @@ function drawGraphData(graph, yValues, graphType) {
     const canvas = graph.canvas;
     const ctx = canvas.getContext("2d");
 
+    const dataColor       = "#0008";
+    const dataColorGrayed = "#0002";
+
     switch (graphType) {
         case GraphType.BAR:
         default:
@@ -306,13 +309,13 @@ function drawGraphData(graph, yValues, graphType) {
                 const xValue = index - 0.5;
                 const yValue = yValues[index];
 
-                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue + 0.5) - 0.5;
-                const canvasW = Math.ceil(graph.xCoeff * 1.0);
+                const canvasX = Math.round(graph.xOffset + graph.xCoeff * xValue);
+                const canvasW = Math.round(graph.xOffset + graph.xCoeff * (xValue + 1)) - canvasX;
 
                 const canvasY = graph.yOffset + Math.round(graph.yCoeff * graph.yValueMin + 0.5) - 0.5;
                 const canvasH = Math.round(graph.yCoeff * yValue);
 
-                ctx.fillStyle   = "#444";
+                ctx.fillStyle   = dataColor;
                 ctx.fillRect(canvasX, canvasY,
                              canvasW, canvasH);
                 ctx.fill();
@@ -325,15 +328,15 @@ function drawGraphData(graph, yValues, graphType) {
             ctx.lineWidth   = canvas.height * 0.015;
 
             if (graphType == GraphType.LINE) {
-                ctx.strokeStyle = "#000";
+                ctx.strokeStyle = dataColor;
                 ctx.setLineDash([]);
             }
             if (graphType == GraphType.LINE_DASHED) {
-                ctx.strokeStyle = "#000";
+                ctx.strokeStyle = dataColor;
                 ctx.setLineDash([ctx.lineWidth, 2 * ctx.lineWidth]);
             }
             if (graphType == GraphType.LINE_GRAYED) {
-                ctx.strokeStyle = "#0002";
+                ctx.strokeStyle = dataColorGrayed;
                 ctx.setLineDash([]);
             }
 
