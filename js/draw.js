@@ -151,7 +151,7 @@ function drawGraphCurrentCursor(graph) {
     const canvasYEnd   = Math.round(canvas.height - graph.marginBottom);
 
     const ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#0003";
+    ctx.strokeStyle = "#0002";
     ctx.lineWidth   = canvas.height * 0.015;
     ctx.setLineDash([]);
 
@@ -332,7 +332,7 @@ function drawGraphData(graph, yValues, graphType) {
                 ctx.setLineDash([ctx.lineWidth, 2 * ctx.lineWidth]);
             }
             if (graphType == GraphType.LINE_GRAYED) {
-                ctx.strokeStyle = "#0003";
+                ctx.strokeStyle = "#0002";
                 ctx.setLineDash([]);
             }
 
