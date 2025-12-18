@@ -51,7 +51,11 @@ function drawHeader() {
                                                        "  <br>Precipitation: " +
                                                        weatherData.daily.precipitation_sum[0] + weatherData.daily_units.precipitation_sum +
                                                        "  <br>Precipitation hours: " +
-                                                       weatherData.daily.precipitation_hours[0] + weatherData.daily_units.precipitation_hours
+                                                       weatherData.daily.precipitation_hours[0] + weatherData.daily_units.precipitation_hours +
+                                                       "  <br>Visibility: " +
+                                                       weatherData.daily.visibility_min[0] +
+                                                       ".." +
+                                                       weatherData.daily.visibility_max[0] + weatherData.daily_units.visibility_max
 
                                                        ;
 }
