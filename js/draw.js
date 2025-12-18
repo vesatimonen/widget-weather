@@ -151,9 +151,9 @@ function drawGraphCurrentCursor(graph) {
     const canvasYEnd   = Math.round(canvas.height - graph.marginBottom);
 
     const ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#000";
-    ctx.lineWidth   = 1.0;
-    ctx.setLineDash([1, 2]);
+    ctx.strokeStyle = "#0003";
+    ctx.lineWidth   = canvas.height * 0.015;
+    ctx.setLineDash([]);
 
     ctx.beginPath();
     ctx.moveTo(canvasX, canvasYStart);
@@ -194,7 +194,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             // Day tick
             if (hour > 0 && hour < graph.xValueMax && (hour % 24) == 0) {
                 ctx.beginPath();
-                ctx.moveTo(canvasX, graph.marginTop);
+                ctx.moveTo(canvasX, canvas.height / 2);
                 ctx.lineTo(canvasX, canvas.height - graph.marginBottom);
                 ctx.stroke();
             }
