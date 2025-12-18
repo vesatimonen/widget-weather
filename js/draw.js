@@ -35,7 +35,9 @@ function drawHeader() {
     document.getElementById("header-data").innerHTML = "Day: " +
                                                        weatherData.daily.sunrise[0].split("T")[1] +
                                                        "−" +
-                                                       weatherData.daily.sunset[0].split("T")[1];
+                                                       weatherData.daily.sunset[0].split("T")[1] +
+                                                       "  Length: " +
+                                                       weatherData.daily.daylight_duration[0];
 }
 
 
