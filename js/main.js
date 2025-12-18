@@ -83,21 +83,19 @@ function redraw() {
 }
 
 window.onload = async function() {
-    // Show data widgets
-    document.getElementById("header-widget").style.visibility = "visible";
-
     try {
         // Parse options
         parseOptions();
 
         // Get current location (wait for result)
+        document.getElementById("header-widget").innerHTML = "Get current location...";
         let location = await getCurrentLocation();
-
         if (location == null) {
             location = {latitude: 60.1699, longitude: 24.9384};
         }
 
         // Get weather data (wait for results)
+        document.getElementById("header-widget").innerHTML = "Loading data...";
         await getWeatherData(location.latitude, location.longitude);
 
     } catch (err) {
@@ -109,6 +107,9 @@ window.onload = async function() {
 
     // Show data widgets
     document.getElementById("data-widgets").style.visibility = "visible";
+
+    // Show data widgets
+    document.getElementById("header-widget").innerHTML = "WIDGET WEATHER";
 }
 
 
