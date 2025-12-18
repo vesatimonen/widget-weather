@@ -47,7 +47,12 @@ function drawHeader() {
                                                        "  <br>Humidity: " +
                                                        weatherData.daily.relative_humidity_2m_min[0] +
                                                        ".." +
-                                                       weatherData.daily.relative_humidity_2m_max[0] + weatherData.daily_units.relative_humidity_2m_max
+                                                       weatherData.daily.relative_humidity_2m_max[0] + weatherData.daily_units.relative_humidity_2m_max +
+                                                       "  <br>Precipitation: " +
+                                                       weatherData.daily.precipitation_sum[0] + weatherData.daily_units.precipitation_sum +
+                                                       "  <br>Precipitation hours: " +
+                                                       weatherData.daily.precipitation_hours[0] + weatherData.daily_units.precipitation_hours
+
                                                        ;
 }
 
