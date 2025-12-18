@@ -65,6 +65,8 @@ body {
 }
 
 .widget.graph {
+    font-size:      2vh;
+
     aspect-ratio:   auto;
 }
 
