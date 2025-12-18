@@ -3,11 +3,6 @@ const strorageName = "widget-weather";
 
 async function getLocationName(latitude, longitude) {
     try {
-
-latitude = 60.1699;
-longitude = 24.9384;
-
-
         const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
         locationInfo = await response.json();
         console.log(locationInfo.address);
@@ -16,29 +11,16 @@ longitude = 24.9384;
         console.log(locationInfo.address.city);
         console.log(locationInfo.address.country);
 
-        const name = (locationInfo?.address?.quarter ?? "") +
-                     (locationInfo?.address?.suburb ?? "") +
-                     (locationInfo?.address?.city ?? "") +
-                     (locationInfo?.address?.country ?? "");
+
+        const addressParts = [
+            locationInfo?.address?.quarter,
+            locationInfo?.address?.suburb,
+            locationInfo?.address?.city,
+            locationInfo?.address?.country
+        ];
+        const name = addressParts.filter(part => part).join(", ");
 
         return name;
-
-/*
-  "address": {
-    "suburb": "City Centre",
-
-    "road": "Kaivokatu",
-    "city_district": "Southern major district",
-    "city": "Helsinki",
-    "municipality": "Helsinki sub-region",
-    "state": "Uusimaa",
-    "ISO3166-2-lvl4": "FI-18",
-    "region": "Mainland Finland",
-    "postcode": "00101",
-    "country": "Finland",
-    "country_code": "fi"
-  },
-*/
     } catch (err) {
         console.error(err);
     }
