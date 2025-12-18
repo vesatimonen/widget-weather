@@ -34,12 +34,17 @@ function resizeCanvas(canvas) {
 function drawHeader() {
     document.getElementById("header-data").innerHTML = "Day: " +
                                                        weatherData.daily.sunrise[0].split("T")[1] +
-                                                       "−" +
+                                                       ".." +
                                                        weatherData.daily.sunset[0].split("T")[1] +
                                                        "  Sunshine: " +
                                                        weatherData.daily.sunshine_duration[0] +
                                                        "/" +
-                                                       weatherData.daily.daylight_duration[0];
+                                                       weatherData.daily.daylight_duration[0] +
+                                                       "  Temperature: " +
+                                                       weatherData.daily.temperature_2m_min[0] +
+                                                       ".." +
+                                                       weatherData.daily.temperature_2m_max[0]
+                                                       ;
 }
 
 

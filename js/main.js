@@ -59,7 +59,7 @@ async function getWeatherData(latitude, longitude) {
                       "&forecast_days=2" +
                       "&current=is_day,uv_index,temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,apparent_temperature,relative_humidity_2m,cloud_cover,surface_pressure,precipitation_probability" +
                       "&hourly=is_day,uv_index,temperature_2m,precipitation_probability,relative_humidity_2m,apparent_temperature,precipitation,weather_code,surface_pressure,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m" +
-                      "&daily=sunrise,sunset,sunshine_duration,daylight_duration";
+                      "&daily=sunrise,sunset,sunshine_duration,daylight_duration,temperature_2m_min,temperature_2m_max";
 
         const response = await fetch(query);
         weatherData = await response.json();
