@@ -5,12 +5,6 @@ async function getLocationName(latitude, longitude) {
     try {
         const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
         locationInfo = await response.json();
-        console.log(locationInfo.address);
-        console.log(locationInfo.address.quarter);
-        console.log(locationInfo.address.suburb);
-        console.log(locationInfo.address.city);
-        console.log(locationInfo.address.country);
-
 
         const addressParts = [
             locationInfo?.address?.quarter,
