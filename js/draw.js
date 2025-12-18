@@ -36,7 +36,9 @@ function drawHeader() {
                                                        weatherData.daily.sunrise[0].split("T")[1] +
                                                        "−" +
                                                        weatherData.daily.sunset[0].split("T")[1] +
-                                                       "  Length: " +
+                                                       "  Sunshine: " +
+                                                       weatherData.daily.sunshine_duration[0] +
+                                                       "/" +
                                                        weatherData.daily.daylight_duration[0];
 }
 
