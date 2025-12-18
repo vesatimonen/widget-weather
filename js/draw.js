@@ -312,7 +312,7 @@ function drawGraphData(graph, yValues, graphType) {
                 const canvasY = graph.yOffset + Math.round(graph.yCoeff * graph.yValueMin + 0.5) - 0.5;
                 const canvasH = Math.round(graph.yCoeff * yValue);
 
-                ctx.fillStyle   = "#000C";
+                ctx.fillStyle   = "#444";
                 ctx.fillRect(canvasX, canvasY,
                              canvasW, canvasH);
                 ctx.fill();
