@@ -282,7 +282,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
             case YAxisType.LEFT:
                 canvasX    = graph.xOffset;
                 tickLength = -graph.tickLength;
-                textShift  = -(graph.tickLength + 2);
+                textShift  = -(graph.tickLength + 5);
                 textAlign  = "right";
                 break;
             case YAxisType.RIGHT:
@@ -310,7 +310,12 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
 
             ctx.beginPath();
             ctx.moveTo(canvasX, canvasY);
-            ctx.lineTo(canvasX + tickLength, canvasY);
+
+            if ((yValue % majorTick) == 0) {
+                ctx.lineTo(canvasX + tickLength * 2, canvasY);
+            } else {
+                ctx.lineTo(canvasX + tickLength, canvasY);
+            }
             ctx.stroke();
         }
 
@@ -434,7 +439,7 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
         marginRight:    canvas.height * 0.21,
         color:          "#000",
 
-        tickLength:     canvas.height * 0.030,
+        tickLength:     canvas.height * 0.020,
         fontSize:       canvas.height * 0.100
     };
 
