@@ -324,10 +324,7 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
             // Convert value to y position
             const canvasY =  graph.yOffset + Math.round(yValue * graph.yCoeff);
 
-            var tickText = "";
-            if ((yValue % majorTick) == 0) {
-                tickText = String(yValue)
-            }
+            var tickText = String(yValue)
 
             ctx.textAlign    = textAlign;
             ctx.textBaseline = "middle";
