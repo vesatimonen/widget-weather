@@ -73,8 +73,17 @@ async function getWeatherData(latitude, longitude) {
 
 
 /*****************************************************************************
-* Get weather data
+* Get place location
 *****************************************************************************/
+/*
+async function getPlaceLocation(name) {
+
+location = {latitude: 60.1699, longitude: 24.9384};
+console.log(name, location.latitude, location.longitude);
+
+    return location;
+}
+*/
 // https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=1&language=en&format=json
 
 
@@ -91,8 +100,12 @@ function getParams() {
     /* Location parameter */
     const latitude  = url.searchParams.get("latitude");
     const longitude = url.searchParams.get("longitude");
+    let location = null;
+    if (latitude != null && longitude != null) {
+        location = {latitude, longitude};
+    }
 
-    return {name: name, location: {latitude, longitude}};
+    return {name, location};
 }
 
 /*****************************************************************************
@@ -129,10 +142,21 @@ window.onload = async function() {
     try {
         // Parse options
         let {name, location} = getParams();
-console.log(name, location.latitude, location.longitude);
 
+//console.log(name, location.latitude, location.longitude);
+console.log(name, location);
+
+        // Name as parameter?
+/*
+        if (name != null) {
+            location = await getPlaceLocation(name);
+        }
+*/
+
+        // Get location if not already given
         if (location == null) {
-            // Get current location if needed (wait for result)
+console.log("hep");
+            // Get current location (wait for result)
             document.getElementById("header-title").innerHTML = "Get current location...";
             location = await getCurrentLocation();
             if (location == null) {
