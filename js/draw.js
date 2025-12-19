@@ -247,7 +247,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             // Day tick
             if (hour > 0 && hour < graph.xValueMax && (hour % 24) == 0) {
                 ctx.beginPath();
-                ctx.moveTo(canvasX, canvas.height / 2);
+                ctx.moveTo(canvasX, 3 * canvas.height / 4);
                 ctx.lineTo(canvasX, canvas.height - graph.marginBottom);
                 ctx.stroke();
             }
