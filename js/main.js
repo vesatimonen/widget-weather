@@ -12,6 +12,7 @@ async function getLocationAddress(latitude, longitude) {
         const addressParts = [
             locationInfo?.address?.quarter,
             locationInfo?.address?.suburb,
+            locationInfo?.address?.town,
             locationInfo?.address?.city,
             locationInfo?.address?.country
         ];
