@@ -92,8 +92,8 @@ const weatherIcons = {
      1: ["02n.svg", "02d.svg"],     // Mainly clear
      2: ["03n.svg", "03d.svg"],     // Partly cloudy
      3: ["04.svg" , "04.svg" ],     // Overcast
-    45: ["14.svg" , "14.svg" ],     // Fog
-    48: ["12.svg" , "12.svg" ],     // Depositing rime fog
+    45: ["15.svg" , "15.svg" ],     // Fog
+    48: ["15.svg" , "15.svg" ],     // Depositing rime fog
     51: ["46.svg" , "46.svg" ],     // Drizzle: Light
     53: ["09.svg" , "09.svg" ],     // Drizzle: Moderate
     55: ["10.svg" , "10.svg" ],     // Drizzle: Dense
