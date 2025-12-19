@@ -10,6 +10,7 @@ async function getLocationAddress(latitude, longitude) {
         locationInfo = await response.json();
 
         const addressParts = [
+            locationInfo?.address?.road,
             locationInfo?.address?.quarter,
             locationInfo?.address?.suburb,
             locationInfo?.address?.town,
