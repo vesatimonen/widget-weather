@@ -38,13 +38,6 @@
         <div id="data-widgets" class="hidden flex flex--col gap--xsmall">
             <div class="flex flex--row gap--xsmall">
                 <div class="widget">
-                    <div id="precipitation-header"          class="widget-header"></div>
-                    <img id="current-weather-img"           class="widget-image" src=""/>
-                    <div id="current-precipitation"         class="widget-value"></div>
-                    <div id="current-probability"           class="widget-footer" style="font-weight: 400;"></div>
-                    <div id="current-precipitation-unit"    class="widget-footer" style="text-align: right;"></div>
-                </div>
-                <div class="widget">
                     <div id="temperature-header"            class="widget-header"></div>
                     <div id="current-temperature"           class="widget-value"></div>
                     <div id="current-apparent-temperature"  class="widget-footer" style="font-weight: 400;"></div>
@@ -58,15 +51,17 @@
                     <canvas                                 class="widget-canvas wind-widget-canvas"></canvas>
                 </div>
                 <div class="widget">
+                    <div id="precipitation-header"          class="widget-header"></div>
+                    <img id="current-weather-img"           class="widget-image" src=""/>
+                    <div id="current-precipitation"         class="widget-value"></div>
+                    <div id="current-probability"           class="widget-footer" style="font-weight: 400;"></div>
+                    <div id="current-precipitation-unit"    class="widget-footer" style="text-align: right;"></div>
+                </div>
+                <div class="widget">
                     <div id="uv-index-header"               class="widget-header"></div>
                     <div id="current-uv-index"              class="widget-value"></div>
                     <div id="current-cloud-cover"           class="widget-footer" style="font-weight: 400;"></div>
                 </div>
-            </div>
-
-            <div class="widget graph">
-                <div    class="widget-header">PRECIPITATION / PROBABILITY</div>
-                <canvas class="widget-canvas precipitation-canvas"></canvas>
             </div>
 
             <div class="widget graph">
@@ -77,6 +72,11 @@
             <div class="widget graph">
                 <div    class="widget-header">WIND / GUSTS</div>
                 <canvas class="widget-canvas wind-canvas"></canvas>
+            </div>
+
+            <div class="widget graph">
+                <div    class="widget-header">PRECIPITATION / PROBABILITY</div>
+                <canvas class="widget-canvas precipitation-canvas"></canvas>
             </div>
 
             <div class="widget graph">
