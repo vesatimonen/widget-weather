@@ -154,7 +154,7 @@ function drawCurrentWindArrow(canvas) {
         {x:  0.13, y: -0.30}
     ];
 
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "#FFFF";
     ctx.beginPath();
     for (let index = 0; index < points.length; index++) {
         // Rotate with angle (clockwise)
