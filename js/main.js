@@ -1,7 +1,10 @@
 const strorageName = "widget-weather";
 
 
-async function getLocationName(latitude, longitude) {
+/*****************************************************************************
+* Get location address
+*****************************************************************************/
+async function getLocationAddress(latitude, longitude) {
     try {
         const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
         locationInfo = await response.json();
@@ -70,17 +73,26 @@ async function getWeatherData(latitude, longitude) {
 
 
 /*****************************************************************************
+* Get weather data
+*****************************************************************************/
+// https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=1&language=en&format=json
+
+
+/*****************************************************************************
 * Parse URL options
 *****************************************************************************/
-function parseOptions() {
+function getParams() {
     /* Get URL */
     const url = new URL(window.location.href);
 
-    /* Level option */
-    const levelOption = url.searchParams.get("level");
-    if (levelOption == null) {
-    } else {
-    }
+    /* Name parameter */
+    const name = url.searchParams.get("name");
+
+    /* Location parameter */
+    const latitude  = url.searchParams.get("latitude");
+    const longitude = url.searchParams.get("longitude");
+
+    return {name: name, location: {latitude, longitude}};
 }
 
 /*****************************************************************************
@@ -116,27 +128,32 @@ function redraw() {
 window.onload = async function() {
     try {
         // Parse options
-        parseOptions();
+        let {name, location} = getParams();
+console.log(name, location.latitude, location.longitude);
 
-        // Get current location (wait for result)
+        // Get current location if needed (wait for result)
         document.getElementById("header-title").innerHTML = "Get current location...";
-        let location = await getCurrentLocation();
+        location = await getCurrentLocation();
         if (location == null) {
             location = {latitude: 60.1699, longitude: 24.9384};
         }
+
+
+
+
 
         // Get weather data (wait for results)
         document.getElementById("header-title").innerHTML = "Loading weather data...";
         await getWeatherData(location.latitude, location.longitude);
 
-        // Get current location (wait for result)
-        document.getElementById("header-title").innerHTML = "Loading location name...";
-        let name = await getLocationName(location.latitude, location.longitude);
-        if (name == null) {
-            name = "UNKNOWN PLACE";
+        // Get location address (wait for result)
+        document.getElementById("header-title").innerHTML = "Loading location address...";
+        let address = await getLocationAddress(location.latitude, location.longitude);
+        if (address == null) {
+            address = "UNKNOWN PLACE";
         }
 
-        document.getElementById("header-title").innerHTML = name;
+        document.getElementById("header-title").innerHTML = address;
     } catch (err) {
         console.error("Error initializing page:", err);
     }
