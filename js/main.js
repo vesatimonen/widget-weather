@@ -12,7 +12,7 @@ async function getLocationName(latitude, longitude) {
             locationInfo?.address?.city,
             locationInfo?.address?.country
         ];
-        const name = addressParts.filter(part => part).join(", ");
+        const name = addressParts.filter(part => part).join(" • ");
 
         return name;
     } catch (err) {
