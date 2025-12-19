@@ -97,7 +97,6 @@ async function getPlaceLocation(name) {
         return null;
     }
 }
-//
 
 
 /*****************************************************************************
@@ -167,9 +166,11 @@ window.onload = async function() {
             // Get current location (wait for result)
             document.getElementById("header-title").innerHTML = "Get current location...";
             location = await getCurrentLocation();
-            if (location == null) {
-                location = {latitude: 60.1699, longitude: 24.9384};
-            }
+        }
+
+        // Fallback (Helsinki)
+        if (location == null) {
+            location = {latitude: 60.1699, longitude: 24.9384};
         }
 
         // Get weather data (wait for results)
