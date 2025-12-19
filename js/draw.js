@@ -33,10 +33,10 @@ function resizeCanvas(canvas) {
 // *** Header *******************************************************
 function drawHeader() {
 
-    const sunshine_hours   = Math.round(weatherData.daily.sunshine_duration[0] / 3600);
+    const sunshine_hours   = Math.floor(weatherData.daily.sunshine_duration[0] / 3600);
     const sunshine_minutes = Math.floor((weatherData.daily.sunshine_duration[0] % 3600) / 60);
 
-    const daylight_hours   = Math.round(weatherData.daily.daylight_duration[0] / 3600);
+    const daylight_hours   = Math.floor(weatherData.daily.daylight_duration[0] / 3600);
     const daylight_minutes = Math.floor((weatherData.daily.daylight_duration[0] % 3600) / 60);
 
     const sunshine_str = sunshine_hours.toString().padStart(2, '0')
