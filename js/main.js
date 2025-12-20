@@ -9,15 +9,40 @@ async function getLocationAddress(latitude, longitude) {
         const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
         locationInfo = await response.json();
 
+//console.log(locationInfo);
+
         const addressParts = [
             locationInfo?.address?.road,
+
             locationInfo?.address?.quarter,
+
+            locationInfo?.address?.district,
+            locationInfo?.address?.borough,
             locationInfo?.address?.suburb,
-            locationInfo?.address?.town,
+
             locationInfo?.address?.city,
+            locationInfo?.address?.town,
+            locationInfo?.address?.village,
+
             locationInfo?.address?.country
         ];
         const name = addressParts.filter(part => part).join(" • ");
+
+/*
+postcode
+emergency, historic, military, natural, landuse, place, railway, man_made, aerialway, boundary, amenity, aeroway, club, craft, leisure, office, mountain_pass, shop, tourism, bridge, tunnel, waterway
+house_number, house_name
+road
+city_block, residential, farm, farmyard, industrial, commercial, retail
+neighbourhood, allotments, quarter
+hamlet, croft, isolated_dwelling
+city_district, district, borough, suburb, subdivision
+municipality, city, town, village
+region, state, state_district, county, ISO3166-2-lvl
+country, country_code
+continent
+*/
+
 
         return name;
     } catch (err) {
