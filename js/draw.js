@@ -330,6 +330,14 @@ function drawGraphYAxis(graph = {}, unitText, yAxisType, minorTick, majorTick) {
             ctx.textBaseline = "middle";
             ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
             ctx.fillText(tickText, canvasX + textShift, canvasY);
+
+            if (yAxisType == YAxisType.LEFT) {
+                ctx.beginPath();
+                ctx.strokeStyle = "#0002";
+                ctx.moveTo(graph.xOffset, canvasY);
+                ctx.lineTo(graph.xOffset + Math.round(graph.xValueMax * graph.xCoeff), canvasY);
+                ctx.stroke();
+            }
         }
 
         // Y-axis unit
@@ -520,11 +528,11 @@ function drawGraphs() {
     drawGraphCurrentCursor(uvGraph);
 
     // Draw data
+    drawGraphData(temperatureGraph,       weatherData.hourly.temperature_2m,            GraphType.LINE);
+    drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_GRAYED);
 //    drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.LINE);
         drawGraphData(precipitationGraph,     weatherData.hourly.precipitation,             GraphType.BAR);
     drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_GRAYED);
-    drawGraphData(temperatureGraph,       weatherData.hourly.temperature_2m,            GraphType.LINE);
-    drawGraphData(temperatureGraph,       weatherData.hourly.apparent_temperature,      GraphType.LINE_GRAYED);
     drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
     drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_GRAYED);
     drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
@@ -537,16 +545,16 @@ function drawGraphs() {
 
 
     // Draw x-axis
-    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
     drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
+    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
     drawGraphXAxis(windGraph,          minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
     drawGraphXAxis(uvGraph,            minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
 
     // Draw y-axis
-    drawGraphYAxis(precipitationGraph,     weatherData.hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(precipitationProbGraph, weatherData.hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
     drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.temperature_2m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
     drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.apparent_temperature,      YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(precipitationGraph,     weatherData.hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = 1);
+    drawGraphYAxis(precipitationProbGraph, weatherData.hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_speed_10m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_gusts_10m,            YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
     drawGraphYAxis(uvGraph,                weatherData.hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
