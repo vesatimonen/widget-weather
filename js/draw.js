@@ -350,7 +350,7 @@ const GraphType = Object.freeze({
   LINE_DASHED: "LINE_DASHED",
   LINE_GRAYED: "LINE_GRAYED"
 });
-function drawGraphData(graph, yValues, graphType) {
+function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments = [1, 2]) {
     const canvas = graph.canvas;
     const ctx = canvas.getContext("2d");
 
@@ -388,15 +388,20 @@ function drawGraphData(graph, yValues, graphType) {
         case GraphType.LINE:
         case GraphType.LINE_DASHED:
         case GraphType.LINE_GRAYED:
-            ctx.lineWidth   = canvas.height * 0.015;
+            ctx.lineWidth = lineWeight * canvas.height * 0.015;
 
             if (graphType == GraphType.LINE) {
                 ctx.strokeStyle = dataColor;
                 ctx.setLineDash([]);
             }
             if (graphType == GraphType.LINE_DASHED) {
-                ctx.strokeStyle = dataColor;
-                ctx.setLineDash([ctx.lineWidth, 2 * ctx.lineWidth]);
+                ctx.strokeStyle = dataColorGrayed;
+
+                let segments = dashSegments;
+                for (let i = 0; i < segments.length; i++) {
+                    segments[i] *= ctx.lineWidth;
+                }
+                ctx.setLineDash(segments);
             }
             if (graphType == GraphType.LINE_GRAYED) {
                 ctx.strokeStyle = dataColorGrayed;
@@ -525,6 +530,11 @@ function drawGraphs() {
     drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
 //        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
+
+    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_low,           GraphType.LINE_DASHED, 0.5, [2,2]);
+    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_mid,           GraphType.LINE_DASHED, 0.5, [4,4]);
+    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_high,          GraphType.LINE_DASHED, 0.5, [8,8]);
+
 
     // Draw x-axis
     drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
