@@ -553,10 +553,10 @@ function drawGraphs() {
     // Draw y-axis
     drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.temperature_2m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
     drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.apparent_temperature,      YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(precipitationGraph,     weatherData.hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = 1);
+    drawGraphYAxis(precipitationGraph,     weatherData.hourly_units.precipitation,             YAxisType.LEFT,  minorTick = 1,  majorTick = precipitationGraph.yValueMax / 5);
     drawGraphYAxis(precipitationProbGraph, weatherData.hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_speed_10m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_gusts_10m,            YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(uvGraph,                weatherData.hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
+    drawGraphYAxis(uvGraph,                weatherData.hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = uvGraph.yValueMax / 5);
     drawGraphYAxis(cloudCoverGraph,        weatherData.hourly_units.cloud_cover,               YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
 }
