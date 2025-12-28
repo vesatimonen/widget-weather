@@ -512,6 +512,17 @@ function initializeGraph(canvas, xValues, yVariables, yValueStep) {
     return graph;
 }
 
+
+function calcCloudCover(a, b, c) {
+    let result = [];
+    for (let i = 0; i < a.length; i++) {
+        let value = 1 - (1 - a[i]/100) * (1 - b[i]/100) * (1 - c[i]/100);
+        result.push(value * 100);
+    }
+
+    return result;
+}
+
 function drawGraphs() {
     // Initialize graphs
     precipitationGraph     = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [weatherData.hourly.precipitation],                               5);
@@ -539,9 +550,12 @@ function drawGraphs() {
 //        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
-    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_low,           GraphType.LINE_DASHED, 0.5, [2,2]);
-    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_mid,           GraphType.LINE_DASHED, 0.5, [4,4]);
-    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_high,          GraphType.LINE_DASHED, 0.5, [8,8]);
+    const cloudCover = calcCloudCover(weatherData.hourly.cloud_cover_low, weatherData.hourly.cloud_cover_mid, weatherData.hourly.cloud_cover_high);
+    drawGraphData(cloudCoverGraph,        cloudCover,                                   GraphType.LINE_DASHED, 0.5, [2,2]);
+
+//    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_low,           GraphType.LINE_DASHED, 0.5, [2,2]);
+//    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_mid,           GraphType.LINE_DASHED, 0.5, [4,4]);
+//    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_high,          GraphType.LINE_DASHED, 0.5, [8,8]);
 
 
     // Draw x-axis

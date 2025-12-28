@@ -9,7 +9,7 @@ async function getLocationAddress(latitude, longitude) {
         const response = await fetch('https://nominatim.openstreetmap.org/reverse?lat=' + latitude + '&lon=' + longitude + '&format=json');
         locationInfo = await response.json();
 
-console.log(locationInfo);
+//console.log(locationInfo);
 
         const addressParts = [
             locationInfo?.address?.road,
