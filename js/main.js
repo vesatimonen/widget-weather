@@ -128,22 +128,22 @@ async function getPlaceLocation(name) {
 /*****************************************************************************
 * Parse URL options
 *****************************************************************************/
+var params = {
+    name:       undefined,
+    latitude:   undefined,
+    longitude:  undefined
+};
+
 function getParams() {
     /* Get URL */
     const url = new URL(window.location.href);
 
     /* Name parameter */
-    const name = url.searchParams.get("name");
+    params.name = url.searchParams.get("name");
 
     /* Location parameter */
-    const latitude  = url.searchParams.get("latitude");
-    const longitude = url.searchParams.get("longitude");
-    let location = null;
-    if (latitude != null && longitude != null) {
-        location = {latitude, longitude};
-    }
-
-    return {name, location};
+    params.latitude  = url.searchParams.get("latitude");
+    params.longitude = url.searchParams.get("longitude");
 }
 
 /*****************************************************************************
@@ -178,13 +178,19 @@ function redraw() {
 
 window.onload = async function() {
     try {
-        // Parse options
-        let {name, location} = getParams();
+        // Parse parameters
+        getParams();
+
+        let location = null;
 
         // Name as parameter?
-        if (name != null) {
+        if (params.name != undefined) {
             document.getElementById("header-title").innerHTML = "Get named location...";
-            location = await getPlaceLocation(name);
+            location = await getPlaceLocation(params.name);
+        }
+
+        if (params.latitude != undefined && params.longitude != undefined) {
+            location = {latitude: params.latitude, longitude: params.longitude};
         }
 
         // Get location if not already given
