@@ -1,5 +1,30 @@
 const strorageName = "widget-weather";
 
+/*****************************************************************************
+* Parse URL options
+*****************************************************************************/
+var params = {
+    name:       undefined,
+    latitude:   undefined,
+    longitude:  undefined,
+    days:       undefined
+};
+
+function getParams() {
+    /* Get URL */
+    const url = new URL(window.location.href);
+
+    /* Name parameter */
+    params.name = url.searchParams.get("name");
+
+    /* Location parameter */
+    params.latitude  = url.searchParams.get("latitude");
+    params.longitude = url.searchParams.get("longitude");
+
+    /* Days parameter */
+    params.days = url.searchParams.get("days");
+}
+
 
 /*****************************************************************************
 * Get location address
@@ -82,10 +107,16 @@ async function getCurrentLocation() {
 let weatherData = undefined;
 async function getWeatherData(latitude, longitude) {
     try {
+        let days = 2;
+        if (params.days != undefined) {
+            days = params.days;
+        }
+
+
         const query = "https://api.open-meteo.com/v1/forecast" +
                       "?latitude=" + latitude + "&longitude=" + longitude +
                       "&timezone=auto&temperature_unit=celsius&wind_speed_unit=ms&precipitation_unit=mm" +
-                      "&forecast_days=2" +
+                      "&forecast_days=" + days +
                       "&current=is_day,uv_index,temperature_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,apparent_temperature,relative_humidity_2m,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,surface_pressure,precipitation_probability" +
                       "&hourly=is_day,uv_index,temperature_2m,precipitation_probability,relative_humidity_2m,apparent_temperature,precipitation,weather_code,surface_pressure,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,wind_direction_10m,wind_gusts_10m" +
                       "&daily=sunrise,sunset,sunshine_duration,daylight_duration,temperature_2m_min,temperature_2m_max,relative_humidity_2m_min,relative_humidity_2m_max,precipitation_sum,precipitation_hours,visibility_min,visibility_max";
@@ -125,26 +156,6 @@ async function getPlaceLocation(name) {
 }
 
 
-/*****************************************************************************
-* Parse URL options
-*****************************************************************************/
-var params = {
-    name:       undefined,
-    latitude:   undefined,
-    longitude:  undefined
-};
-
-function getParams() {
-    /* Get URL */
-    const url = new URL(window.location.href);
-
-    /* Name parameter */
-    params.name = url.searchParams.get("name");
-
-    /* Location parameter */
-    params.latitude  = url.searchParams.get("latitude");
-    params.longitude = url.searchParams.get("longitude");
-}
 
 /*****************************************************************************
 * Main
