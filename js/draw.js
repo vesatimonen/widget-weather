@@ -580,7 +580,20 @@ function drawGraphs() {
 
 
     // Draw x-axis
-    let majorTick = Math.round(weatherData.hourly.time.length / 12);
+    let majorTick = weatherData.hourly.time.length / 12;
+
+    if (majorTick < 4) {
+        majorTick = 2;
+    } else if (majorTick < 6) {
+        majorTick = 4;
+    } else if (majorTick < 8) {
+        majorTick = 6;
+    } else if (majorTick < 12) {
+        majorTick = 8;
+    } else {
+        majorTick = 12;
+    }
+
     drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = majorTick);
     drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = majorTick);
     drawGraphXAxis(windGraph,          minorTick = 1, majorTick = majorTick);
