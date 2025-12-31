@@ -271,16 +271,21 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             ctx.fillText(weekday[day], canvasX, canvas.height);
 
             // Major texts
-            for (let deltaHour = majorTick; deltaHour < 12; deltaHour += majorTick) {
-                ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
-                let canvasX =  graph.xOffset + Math.round((hour + deltaHour) * graph.xCoeff);
-                tickText = String((hour + deltaHour) % 24).padStart(2, "0");
-                ctx.fillText(tickText, canvasX, canvas.height);
+            for (let deltaHour = majorTick; deltaHour <= 12; deltaHour += majorTick) {
+                // Left
+                if (hour - deltaHour > 0) {
+                    let canvasX =  graph.xOffset + Math.round((hour - deltaHour) * graph.xCoeff);
+                    tickText = String((hour - deltaHour) % 24).padStart(2, "0");
+                    ctx.fillText(tickText, canvasX, canvas.height);
+                }
 
-                canvasX =  graph.xOffset + Math.round((hour - deltaHour) * graph.xCoeff);
-                tickText = String((hour - deltaHour) % 24).padStart(2, "0");
-                ctx.fillText(tickText, canvasX, canvas.height);
-
+                // Right
+                if (hour + deltaHour < graph.xValueMax) {
+                    ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
+                    let canvasX =  graph.xOffset + Math.round((hour + deltaHour) * graph.xCoeff);
+                    tickText = String((hour + deltaHour) % 24).padStart(2, "0");
+                    ctx.fillText(tickText, canvasX, canvas.height);
+                }
             }
         }
     }
