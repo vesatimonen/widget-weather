@@ -597,7 +597,7 @@ function drawGraphs() {
     } else if (majorTick < 12) {
         majorTick = 8;
     } else {
-        majorTick = 12;
+        majorTick = 24;
     }
 
     drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = majorTick);
