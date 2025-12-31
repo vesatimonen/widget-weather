@@ -255,6 +255,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             }
         }
 
+        // Day name and major ticks
         for (let hour = 12; hour <= graph.xValueMax; hour += 24) {
             // Convert value to x position
             const canvasX =  graph.xOffset + Math.round(hour * graph.xCoeff);
