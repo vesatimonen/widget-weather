@@ -217,6 +217,7 @@ function drawGraphCurrentCursor(graph) {
 
 
 // *** Graph x-axis *******************************************************
+const weekday = ["S", "M", "T", "W", "T", "F", "S"];
 function drawGraphXAxis(graph = {}, minorTick, majorTick) {
     const canvas = graph.canvas;
     const ctx = canvas.getContext("2d");
@@ -252,6 +253,20 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
                 ctx.stroke();
             }
 
+            // Weekday text
+            if ((hour % 24) == 12) {
+                const date = new Date(weatherData.hourly.time[hour]);
+                const day = date.getDay();
+                console.log(weatherData.hourly.time[hour], day, weekday[day]);
+
+                ctx.textAlign    = "center";
+                ctx.textBaseline = "bottom";
+                ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
+                ctx.fillText(weekday[day], canvasX, canvas.height);
+            }
+
+/*
+            // Major tick number
             var tickText = "";
             if (hour > 0 && (hour % majorTick) == 0) {
                 tickText = String(hour % 24).padStart(2, "0");
@@ -260,6 +275,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             ctx.textBaseline = "bottom";
             ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
             ctx.fillText(tickText, canvasX, canvas.height);
+*/
         }
     }
 }
