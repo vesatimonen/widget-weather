@@ -272,6 +272,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
 
             // Major texts
             for (let deltaHour = majorTick; deltaHour < 12; deltaHour += majorTick) {
+                ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
                 let canvasX =  graph.xOffset + Math.round((hour + deltaHour) * graph.xCoeff);
                 tickText = String((hour + deltaHour) % 24).padStart(2, "0");
                 ctx.fillText(tickText, canvasX, canvas.height);
