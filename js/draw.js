@@ -260,28 +260,29 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             // Convert value to x position
             const canvasX =  graph.xOffset + Math.round(hour * graph.xCoeff);
 
+            // Define font
+            ctx.textAlign    = "center";
+            ctx.textBaseline = "bottom";
+            ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
+
             // Weekday text
             const date = new Date(weatherData.hourly.time[hour]);
             const day = date.getDay();
-
-            ctx.textAlign    = "center";
-            ctx.textBaseline = "bottom";
-            ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
             ctx.fillText(weekday[day], canvasX, canvas.height);
-        }
 
-/*
-            // Major tick number
-            var tickText = "";
-            if (hour > 0 && (hour % majorTick) == 0) {
-                tickText = String(hour % 24).padStart(2, "0");
+            // Major texts
+            for (let deltaHour = majorTick; deltaHour < 12; deltaHour += majorTick) {
+                let canvasX =  graph.xOffset + Math.round((hour + deltaHour) * graph.xCoeff);
+                tickText = String((hour + deltaHour) % 24).padStart(2, "0");
+                ctx.fillText(tickText, canvasX, canvas.height);
+
+                canvasX =  graph.xOffset + Math.round((hour - deltaHour) * graph.xCoeff);
+                tickText = String((hour - deltaHour) % 24).padStart(2, "0");
+                ctx.fillText(tickText, canvasX, canvas.height);
+
             }
-            ctx.textAlign    = "center";
-            ctx.textBaseline = "bottom";
-            ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
-            ctx.fillText(tickText, canvasX, canvas.height);
-*/
         }
+    }
 }
 
 // *** Graph y-axis *******************************************************
