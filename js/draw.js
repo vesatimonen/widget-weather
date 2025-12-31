@@ -235,6 +235,7 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
         ctx.lineTo(graph.xOffset + graph.xCoeff * (graph.xValueMax - graph.xValueMin),   canvasY);
         ctx.stroke();
 
+        // Normal tick and day tick
         for (let hour = 0; hour <= graph.xValueMax; hour += minorTick) {
             // Convert value to x position
             const canvasX =  graph.xOffset + Math.round(hour * graph.xCoeff);
@@ -252,18 +253,21 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
                 ctx.lineTo(canvasX, canvas.height - graph.marginBottom);
                 ctx.stroke();
             }
+        }
+
+        for (let hour = 12; hour <= graph.xValueMax; hour += 24) {
+            // Convert value to x position
+            const canvasX =  graph.xOffset + Math.round(hour * graph.xCoeff);
 
             // Weekday text
-            if ((hour % 24) == 12) {
-                const date = new Date(weatherData.hourly.time[hour]);
-                const day = date.getDay();
-                console.log(weatherData.hourly.time[hour], day, weekday[day]);
+            const date = new Date(weatherData.hourly.time[hour]);
+            const day = date.getDay();
 
-                ctx.textAlign    = "center";
-                ctx.textBaseline = "bottom";
-                ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
-                ctx.fillText(weekday[day], canvasX, canvas.height);
-            }
+            ctx.textAlign    = "center";
+            ctx.textBaseline = "bottom";
+            ctx.font         = "normal 400 " + graph.fontSize + "px 'Oswald'";
+            ctx.fillText(weekday[day], canvasX, canvas.height);
+        }
 
 /*
             // Major tick number
@@ -277,7 +281,6 @@ function drawGraphXAxis(graph = {}, minorTick, majorTick) {
             ctx.fillText(tickText, canvasX, canvas.height);
 */
         }
-    }
 }
 
 // *** Graph y-axis *******************************************************
