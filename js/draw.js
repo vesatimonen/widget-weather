@@ -580,10 +580,11 @@ function drawGraphs() {
 
 
     // Draw x-axis
-    drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
-    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
-    drawGraphXAxis(windGraph,          minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
-    drawGraphXAxis(uvGraph,            minorTick = 1, majorTick = Math.round(weatherData.hourly.time.length / 12));
+    let majorTick = Math.round(weatherData.hourly.time.length / 12);
+    drawGraphXAxis(temperatureGraph,   minorTick = 1, majorTick = majorTick);
+    drawGraphXAxis(precipitationGraph, minorTick = 1, majorTick = majorTick);
+    drawGraphXAxis(windGraph,          minorTick = 1, majorTick = majorTick);
+    drawGraphXAxis(uvGraph,            minorTick = 1, majorTick = majorTick);
 
     // Draw y-axis
     drawGraphYAxis(temperatureGraph,       weatherData.hourly_units.temperature_2m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
