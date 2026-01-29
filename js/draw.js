@@ -577,8 +577,8 @@ function drawGraphs() {
 //        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
-    const cloudCover = calcCloudCover(weatherData.hourly.cloud_cover_low, weatherData.hourly.cloud_cover_mid, weatherData.hourly.cloud_cover_high);
-    drawGraphData(cloudCoverGraph,        cloudCover,                                   GraphType.LINE_DASHED, 0.5, [2,2]);
+//    const cloudCover = calcCloudCover(weatherData.hourly.cloud_cover_low, weatherData.hourly.cloud_cover_mid, weatherData.hourly.cloud_cover_high);
+//    drawGraphData(cloudCoverGraph,        cloudCover,                                   GraphType.LINE_DASHED, 0.5, [2,2]);
 
 //    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_low,           GraphType.LINE_DASHED, 0.5, [2,2]);
 //    drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover_mid,           GraphType.LINE_DASHED, 0.5, [4,4]);
