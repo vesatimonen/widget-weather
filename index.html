@@ -17,11 +17,13 @@
         <script src="https://usetrmnl.com/js/latest/plugins.js"></script>
 -->
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css"/>
 
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/draw.js"></script>
         <script src="js/main.js"></script>
+
 
         <svg width="0" height="0" style="position:absolute;">
           <filter id="imageToBlackAndWhite">
@@ -42,7 +44,6 @@
 
     <!-- BODY -->
     <body class="flex flex--col flex--stretch gap--xsmall p--xsmall">
-
         <div class="widget title gap--xsmall stretch">
             <div id="header-title" style="font-weight: 400;"></div>
             <span id="header-data"></span>
@@ -53,6 +54,12 @@
                 <div class="widget">
                     <div id="temperature-header"            class="widget-header"></div>
                     <div id="current-temperature"           class="widget-value"></div>
+
+<!--
+<div class="ph widget-icon">&#xE472</div>
+-->
+
+
                     <div id="current-apparent-temperature"  class="widget-footer" style="font-weight: 400;"></div>
                     <div id="current-temperature-unit"      class="widget-footer" style="text-align: right;"></div>
                 </div>

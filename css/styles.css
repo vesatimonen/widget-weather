@@ -107,6 +107,12 @@ body {
     background:     none;
 }
 
+.widget-icon {
+    font-size:      clamp(10px, 16vw, 16vh);
+    color:          white;
+    z-index:        -1;
+}
+
 .widget-image {
     width:          90%;
     object-fit:     fill;
