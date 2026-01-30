@@ -86,45 +86,54 @@ function drawHeader() {
 
 
 // *** Current weather *******************************************************
-const weatherIconsURL = "https://nrkno.github.io/yr-weather-symbols/symbols/darkmode/";
+const ph_sun             = "&#xE472";
+const ph_moon            = "&#xE330";
+const ph_cloud_sun       = "&#xE540";
+const ph_cloud_moon      = "&#xE53E";
+const ph_cloud           = "&#xE1AA";
+const ph_cloud_fog       = "&#xE53C";
+const ph_cloud_rain      = "&#xE1B4";
+const ph_cloud_snow      = "&#xE1B8";
+const ph_cloud_lightning = "&#xE1B2";
+
 const weatherIcons = {
-     0: ["01n.svg", "01d.svg"],     // Clear sky
-     1: ["02n.svg", "02d.svg"],     // Mainly clear
-     2: ["03n.svg", "03d.svg"],     // Partly cloudy
-     3: ["04.svg" , "04.svg" ],     // Overcast
-    45: ["15.svg" , "15.svg" ],     // Fog
-    48: ["15.svg" , "15.svg" ],     // Depositing rime fog
-    51: ["46.svg" , "46.svg" ],     // Drizzle: Light
-    53: ["09.svg" , "09.svg" ],     // Drizzle: Moderate
-    55: ["10.svg" , "10.svg" ],     // Drizzle: Dense
-    56: ["47.svg" , "47.svg" ],     // Freezing Drizzle: Light
-    57: ["12.svg" , "12.svg" ],     // Freezing Drizzle: Dense
-    61: ["46.svg" , "46.svg" ],     // Rain: Slight
-    63: ["09.svg" , "09.svg" ],     // Rain: Moderate
-    65: ["10.svg" , "10.svg" ],     // Rain: Heavy
-    66: ["47.svg" , "47.svg" ],     // Freezing Rain: Light
-    67: ["48.svg" , "48.svg" ],     // Freezing Rain: Heavy
-    71: ["49.svg" , "49.svg" ],     // Snow fall: Slight
-    73: ["13.svg" , "13.svg" ],     // Snow fall: Moderate
-    75: ["50.svg" , "50.svg" ],     // Snow fall: Heavy
-    77: ["13.svg" , "13.svg" ],     // Snow grains
-    80: ["05n.svg", "05d.svg"],     // Rain showers: Slight
-    81: ["40n.svg", "40d.svg"],     // Rain showers: Moderate
-    82: ["41n.svg", "41d.svg"],     // Rain showers: Heavy
-    85: ["42n.svg", "42d.svg"],     // Snow showers: Slight
-    86: ["08n.svg", "08d.svg"],     // Snow showers: Heavy
-    95: ["30.svg" , "30.svg" ],     // Thunderstorm: Slight
-    96: ["22.svg" , "22.svg" ],     // Thunderstorm: Moderate
-    99: ["23.svg" , "23.svg" ]      // Thunderstorm with slight and heavy hail
+     0: [ph_moon,            ph_sun            ],     // Clear sky
+     1: [ph_cloud_moon,      ph_cloud_sun      ],     // Mainly clear
+     2: [ph_cloud_moon,      ph_cloud_sun      ],     // Partly cloudy
+     3: [ph_cloud,           ph_cloud          ],     // Overcast
+    45: [ph_cloud_fog,       ph_cloud_fog      ],     // Fog
+    48: [ph_cloud_fog,       ph_cloud_fog      ],     // Depositing rime fog
+    51: [ph_cloud_rain,      ph_cloud_rain     ],     // Drizzle: Light
+    53: [ph_cloud_rain,      ph_cloud_rain     ],     // Drizzle: Moderate
+    55: [ph_cloud_rain,      ph_cloud_rain     ],     // Drizzle: Dense
+    56: [ph_cloud_snow,      ph_cloud_snow     ],     // Freezing Drizzle: Light
+    57: [ph_cloud_snow,      ph_cloud_snow     ],     // Freezing Drizzle: Dense
+    61: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain: Slight
+    63: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain: Moderate
+    65: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain: Heavy
+    66: [ph_cloud_snow,      ph_cloud_snow     ],     // Freezing Rain: Light
+    67: [ph_cloud_snow,      ph_cloud_snow     ],     // Freezing Rain: Heavy
+    71: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow fall: Slight
+    73: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow fall: Moderate
+    75: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow fall: Heavy
+    77: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow grains
+    80: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain showers: Slight
+    81: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain showers: Moderate
+    82: [ph_cloud_rain,      ph_cloud_rain     ],     // Rain showers: Heavy
+    85: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow showers: Slight
+    86: [ph_cloud_snow,      ph_cloud_snow     ],     // Snow showers: Heavy
+    95: [ph_cloud_lightning, ph_cloud_lightning],     // Thunderstorm: Slight
+    96: [ph_cloud_lightning, ph_cloud_lightning],     // Thunderstorm: Moderate
+    99: [ph_cloud_lightning, ph_cloud_lightning]      // Thunderstorm with slight and heavy hail
 };
 function getWeatherIcon(code, is_day)  {
-    var fileName = weatherIcons[code][is_day] || "01d.svg";
+    var iconName = weatherIcons[code][is_day] || ph_sun;
 
-    return weatherIconsURL + fileName;
+    return iconName;
 }
 function drawCurrentWeather() {
     document.getElementById("precipitation-header").innerHTML       = "PRECIPITATION";
-    document.getElementById("current-weather-img").src              = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
+    document.getElementById("current-weather-icon").innerHTML       = getWeatherIcon(weatherData.current.weather_code, weatherData.current.is_day);
     document.getElementById("current-precipitation").innerHTML      = weatherData.current.precipitation;
     document.getElementById("current-precipitation-unit").innerHTML = weatherData.current_units.precipitation;
     document.getElementById("current-probability").innerHTML        = weatherData.current.precipitation_probability  + "%";

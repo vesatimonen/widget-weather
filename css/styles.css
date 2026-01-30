@@ -108,22 +108,8 @@ body {
 }
 
 .widget-icon {
-    font-size:      clamp(10px, 16vw, 16vh);
+    font-size:      clamp(10px, 18vw, 18vh);
     color:          white;
-    z-index:        -1;
-}
-
-.widget-image {
-    width:          90%;
-    object-fit:     fill;
-    margin-top:     5%;
-
-    /*
-    filter: url(#imageToBlackAndWhite) brightness(1.5) contrast(0.5);
-    filter: grayscale(1.0) contrast(1.5) opacity(50%);
-    */
-    filter:         url(#imageToBlackAndWhite) contrast(0.0) brightness(4.0);
-
     z-index:        -1;
 }
 

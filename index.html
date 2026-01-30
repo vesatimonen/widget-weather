@@ -24,20 +24,6 @@
         <script src="js/draw.js"></script>
         <script src="js/main.js"></script>
 
-
-        <svg width="0" height="0" style="position:absolute;">
-          <filter id="imageToBlackAndWhite">
-
-            <!-- Yellowish->white, others->black -->
-            <feColorMatrix type="matrix"
-              values="
-                1 1 1 0 0
-                1 1 1 0 0
-                1 1 1 0 0
-                0 0 0 1 0" />
-          </filter>
-        </svg>
-
         <title>WIDGET_WEATHER</title>
     </head>
 
@@ -54,18 +40,12 @@
                 <div class="widget">
                     <div id="temperature-header"            class="widget-header"></div>
                     <div id="current-temperature"           class="widget-value"></div>
-
-<!--
-<div class="ph widget-icon">&#xE472</div>
--->
-
-
                     <div id="current-apparent-temperature"  class="widget-footer" style="font-weight: 400;"></div>
                     <div id="current-temperature-unit"      class="widget-footer" style="text-align: right;"></div>
                 </div>
                 <div class="widget">
                     <div id="precipitation-header"          class="widget-header"></div>
-                    <img id="current-weather-img"           class="widget-image" src=""/>
+                    <div id="current-weather-icon"          class="widget-icon ph"></div>
                     <div id="current-precipitation"         class="widget-value"></div>
                     <div id="current-probability"           class="widget-footer" style="font-weight: 400;"></div>
                     <div id="current-precipitation-unit"    class="widget-footer" style="text-align: right;"></div>
