@@ -158,9 +158,9 @@ function drawCurrentWindArrow(canvas) {
     const cos = Math.cos(arrowAngle);
 
     var points = [
-        {x:  0.00, y:  0.45},
-        {x: -0.13, y: -0.30},
-        {x:  0.13, y: -0.30}
+        {x:  0.00, y:  0.35},
+        {x: -0.11, y: -0.25},
+        {x:  0.11, y: -0.25}
     ];
 
     ctx.fillStyle = "#FFFF";
