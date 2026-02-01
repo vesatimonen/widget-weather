@@ -108,7 +108,7 @@ body {
 }
 
 .widget-icon {
-    font-size:      clamp(10px, 16vw, 16vh);
+    font-size:      clamp(10px, 14vw, 14vh);
     color:          white;
     z-index:        -1;
 }
