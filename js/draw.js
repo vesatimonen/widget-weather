@@ -408,7 +408,7 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
     switch (graphType) {
         case GraphType.BAR:
         default:
-            // Weather forecast
+            // Weather history and forecast
             for (let index = 0; index < yValues.length; index++) {
                 let   xValueStart = index - 0.5;
                 let   xValueEnd   = index + 0.5;
@@ -456,9 +456,6 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
             }
 
             // Weather history and forecast
-//            ctx.globalAlpha = 0.4;
-//            ctx.globalAlpha = 1.0;
-            ctx.beginPath();
             for (let index = 0; index < yValues.length; index++) {
                 const xValue = index;
                 const yValue = yValues[index];
@@ -467,12 +464,25 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
                 const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
 
                 if (index == 0) {
+                    /* Start history */
+                    ctx.globalAlpha = 0.4;
+                    ctx.beginPath();
+                    ctx.moveTo(canvasX, canvasY);
+                } else if (index == hourIndex) {
+                    /* Stop history */
+                    ctx.lineTo(canvasX, canvasY);
+                    ctx.stroke();
+
+                    /* Start forecast */
+                    ctx.globalAlpha = 1.0;
+                    ctx.beginPath();
                     ctx.moveTo(canvasX, canvasY);
                 } else {
                     ctx.lineTo(canvasX, canvasY);
                 }
             }
             ctx.stroke();
+            ctx.globalAlpha = 1.0;
 
             break;
     }
