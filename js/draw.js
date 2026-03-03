@@ -205,7 +205,7 @@ function drawGraphCurrentCursor(graph) {
 
     // Findout current hour
     const date = new Date(weatherData.current.time);
-    const hour = date.getHours() + date.getMinutes() / 60;
+    const hour = Math.floor(date.getHours() + date.getMinutes() / 60);
 
     // Convert current hour to canvas x-value
     const canvasX      = Math.round(graph.xOffset + graph.xCoeff * hour) + 0.5;
@@ -432,15 +432,14 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
         case GraphType.LINE:
         case GraphType.LINE_DASHED:
         case GraphType.LINE_GRAYED:
+
+            /* Default values for graph */
             ctx.lineWidth = lineWeight * canvas.height * 0.015;
+            ctx.strokeStyle = dataColor;
+            let segments = [];
+            ctx.setLineDash(segments);
 
-            if (graphType == GraphType.LINE) {
-                ctx.strokeStyle = dataColor;
-                ctx.setLineDash([]);
-            }
             if (graphType == GraphType.LINE_DASHED) {
-                ctx.strokeStyle = dataColorGrayed;
-
                 let segments = dashSegments;
                 for (let i = 0; i < segments.length; i++) {
                     segments[i] *= ctx.lineWidth;
@@ -449,11 +448,34 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
             }
             if (graphType == GraphType.LINE_GRAYED) {
                 ctx.strokeStyle = dataColorGrayed;
-                ctx.setLineDash([]);
             }
 
+            // Current hour index
+            const date      = new Date(weatherData.current.time);
+            const hourIndex = Math.floor(date.getHours() + date.getMinutes() / 60);
+
+            // Weather forecast
             ctx.beginPath();
-            for (let index = 0; index < yValues.length; index++) {
+            for (let index = hourIndex; index < yValues.length; index++) {
+                const xValue = index;
+                const yValue = yValues[index];
+
+                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue);
+                const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
+
+                if (index == hourIndex) {
+                    ctx.moveTo(canvasX, canvasY);
+                } else {
+                    ctx.lineTo(canvasX, canvasY);
+                }
+            }
+            ctx.stroke();
+
+
+            // Weather history
+            ctx.globalAlpha = 0.4;
+            ctx.beginPath();
+            for (let index = 0; index <= hourIndex; index++) {
                 const xValue = index;
                 const yValue = yValues[index];
 
@@ -467,6 +489,7 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
                 }
             }
             ctx.stroke();
+            ctx.globalAlpha = 1.0;
 
             break;
     }
