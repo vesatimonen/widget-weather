@@ -208,13 +208,14 @@ function drawGraphCurrentCursor(graph) {
     const hour = Math.floor(date.getHours() + date.getMinutes() / 60);
 
     // Convert current hour to canvas x-value
-    const canvasX      = Math.round(graph.xOffset + graph.xCoeff * hour) + 0.5;
+    const canvasX      = Math.round(graph.xOffset + graph.xCoeff * hour) - 0.5;
     const canvasYStart = Math.round(graph.marginTop);
     const canvasYEnd   = Math.round(canvas.height - graph.marginBottom);
 
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#0002";
-    ctx.lineWidth   = canvas.height * 0.015;
+//    ctx.lineWidth   = canvas.height * 0.015;
+    ctx.lineWidth   = 1;
     ctx.setLineDash([]);
 
     ctx.beginPath();
@@ -427,11 +428,19 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
                 const canvasY = graph.yOffset + Math.round(graph.yCoeff * graph.yValueMin + 0.5) - 0.5;
                 const canvasH = Math.round(graph.yCoeff * yValue);
 
+                /* History */
+                if (index < hourIndex) {
+                    ctx.globalAlpha = 0.3;
+                } else {
+                    ctx.globalAlpha = 1.0;
+                }
+
                 ctx.fillStyle   = dataColor;
                 ctx.fillRect(canvasX, canvasY,
                              canvasW, canvasH);
                 ctx.fill();
             }
+            ctx.globalAlpha = 1.0;
 
             break;
         case GraphType.LINE:
@@ -465,7 +474,7 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
 
                 if (index == 0) {
                     /* Start history */
-                    ctx.globalAlpha = 0.4;
+                    ctx.globalAlpha = 0.3;
                     ctx.beginPath();
                     ctx.moveTo(canvasX, canvasY);
                 } else if (index == hourIndex) {
