@@ -398,12 +398,17 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
     const canvas = graph.canvas;
     const ctx = canvas.getContext("2d");
 
+    // Current hour index
+    const date      = new Date(weatherData.current.time);
+    const hourIndex = Math.floor(date.getHours() + date.getMinutes() / 60);
+
     const dataColor       = "#0008";
     const dataColorGrayed = "#0002";
 
     switch (graphType) {
         case GraphType.BAR:
         default:
+            // Weather forecast
             for (let index = 0; index < yValues.length; index++) {
                 let   xValueStart = index - 0.5;
                 let   xValueEnd   = index + 0.5;
@@ -450,32 +455,11 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
                 ctx.strokeStyle = dataColorGrayed;
             }
 
-            // Current hour index
-            const date      = new Date(weatherData.current.time);
-            const hourIndex = Math.floor(date.getHours() + date.getMinutes() / 60);
-
-            // Weather forecast
+            // Weather history and forecast
+//            ctx.globalAlpha = 0.4;
+//            ctx.globalAlpha = 1.0;
             ctx.beginPath();
-            for (let index = hourIndex; index < yValues.length; index++) {
-                const xValue = index;
-                const yValue = yValues[index];
-
-                const canvasX = graph.xOffset + Math.round(graph.xCoeff * xValue);
-                const canvasY = graph.yOffset + Math.round(graph.yCoeff * yValue);
-
-                if (index == hourIndex) {
-                    ctx.moveTo(canvasX, canvasY);
-                } else {
-                    ctx.lineTo(canvasX, canvasY);
-                }
-            }
-            ctx.stroke();
-
-
-            // Weather history
-            ctx.globalAlpha = 0.4;
-            ctx.beginPath();
-            for (let index = 0; index <= hourIndex; index++) {
+            for (let index = 0; index < yValues.length; index++) {
                 const xValue = index;
                 const yValue = yValues[index];
 
@@ -489,7 +473,6 @@ function drawGraphData(graph, yValues, graphType, lineWeight = 1, dashSegments =
                 }
             }
             ctx.stroke();
-            ctx.globalAlpha = 1.0;
 
             break;
     }
