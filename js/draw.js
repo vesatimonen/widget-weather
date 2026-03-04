@@ -214,8 +214,7 @@ function drawGraphCurrentCursor(graph) {
 
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#0002";
-//    ctx.lineWidth   = canvas.height * 0.015;
-    ctx.lineWidth   = 1;
+    ctx.lineWidth   = 3.0;
     ctx.setLineDash([]);
 
     ctx.beginPath();
