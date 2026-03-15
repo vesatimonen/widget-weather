@@ -153,14 +153,13 @@ async function getWeatherData(latitude, longitude) {
        Date.UTC(date.getFullYear(), 0, 0)) / 86400000
     );
 
-console.log(weatherData);
-
     // Correct current UV index
-    console.log(weatherData.current.uv_index);
     weatherData.current.uv_index = correctUvIndex(weatherData.current.uv_index, latitude, dayOfYear).toFixed(1);
-    console.log(weatherData.current.uv_index);
 
     // Correct hourly UV index
+    for (let index = 0; index < weatherData.hourly.uv_index.length; index++) {
+        weatherData.hourly.uv_index[index] = correctUvIndex(weatherData.hourly.uv_index[index], latitude, dayOfYear);
+    }
 
 }
 
