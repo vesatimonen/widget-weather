@@ -104,25 +104,6 @@ async function getCurrentLocation() {
 /*****************************************************************************
 * Get weather data
 *****************************************************************************/
-function correctUvIndex(rawUv, latitude, dayOfYear) {
-    // Open-Meteo doesn't use a native UV index from GFS
-    // This works reasonably well at mid-latitudes but falls apart at high latitudes
-    // A reasonable correction multiplies the raw UV by a factor that decreases with latitude
-
-    // Solar declination approximation (degrees)
-    const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * Math.PI / 180);
-
-    // Minimum solar zenith angle at solar noon for this lat/month
-    const minZenith = Math.abs(latitude - declination);
-
-    // GFS overestimates more steeply when zenith > ~50°
-    // Empirical correction based on zenith angle
-    const zenithRad = minZenith * Math.PI / 180;
-    const correctionFactor = Math.cos(zenithRad) ** 0.5;
-
-    return rawUv * correctionFactor;
-}
-
 let weatherData = undefined;
 async function getWeatherData(latitude, longitude) {
     try {
@@ -144,22 +125,6 @@ async function getWeatherData(latitude, longitude) {
         weatherData = await response.json();
     } catch (err) {
         console.error(err);
-    }
-
-
-    // Get day of year
-    const date = new Date(weatherData.current.time);
-    const dayOfYear = Math.floor(
-      (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-       Date.UTC(date.getFullYear(), 0, 0)) / 86400000
-    );
-
-    // Correct current UV index
-    weatherData.current.uv_index = correctUvIndex(weatherData.current.uv_index, latitude, dayOfYear).toFixed(1);
-
-    // Correct hourly UV index
-    for (let index = 0; index < weatherData.hourly.uv_index.length; index++) {
-        weatherData.hourly.uv_index[index] = correctUvIndex(weatherData.hourly.uv_index[index], latitude, dayOfYear);
     }
 }
 

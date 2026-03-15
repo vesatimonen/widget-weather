@@ -195,7 +195,7 @@ function drawCurrentWind() {
 // *** Current UV index *******************************************************
 function drawCurrentUVIndex() {
     document.getElementById("uv-index-header").innerHTML     = "UV INDEX";
-    document.getElementById("current-uv-index").innerHTML    = weatherData.current.uv_index;
+    document.getElementById("current-uv-index").innerHTML    = airqualityData.current.uv_index;
     document.getElementById("current-cloud-cover").innerHTML = weatherData.current.cloud_cover + "%";
 }
 
@@ -585,12 +585,12 @@ function calcCloudCover(a, b, c) {
 
 function drawGraphs() {
     // Initialize graphs
-    precipitationGraph     = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [weatherData.hourly.precipitation],                               5);
-    precipitationProbGraph = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [[0, 100]],                                           5);
+    precipitationGraph     = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [weatherData.hourly.precipitation],                                           5);
+    precipitationProbGraph = initializeGraph(document.querySelector(".precipitation-canvas"), weatherData.hourly.time, [[0, 100]],                                                                   5);
     temperatureGraph       = initializeGraph(document.querySelector(".temperature-canvas"),   weatherData.hourly.time, [weatherData.hourly.temperature_2m, weatherData.hourly.apparent_temperature], 5);
     windGraph              = initializeGraph(document.querySelector(".wind-canvas"),          weatherData.hourly.time, [weatherData.hourly.wind_speed_10m, weatherData.hourly.wind_gusts_10m],       5);
-    uvGraph                = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [weatherData.hourly.uv_index],                                    5);
-    cloudCoverGraph        = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [[0, 100]],                                           5);
+    uvGraph                = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [airqualityData.hourly.uv_index],                                             5);
+    cloudCoverGraph        = initializeGraph(document.querySelector(".uv-canvas"),            weatherData.hourly.time, [[0, 100]],                                                                   5);
 
     // Draw cursors
     drawGraphCurrentCursor(precipitationGraph);
@@ -606,7 +606,7 @@ function drawGraphs() {
     drawGraphData(precipitationProbGraph, weatherData.hourly.precipitation_probability, GraphType.LINE_GRAYED);
     drawGraphData(windGraph,              weatherData.hourly.wind_speed_10m,            GraphType.LINE);
     drawGraphData(windGraph,              weatherData.hourly.wind_gusts_10m,            GraphType.LINE_GRAYED);
-    drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.LINE);
+    drawGraphData(uvGraph,                airqualityData.hourly.uv_index,               GraphType.LINE);
 //        drawGraphData(uvGraph,                weatherData.hourly.uv_index,                  GraphType.BAR);
     drawGraphData(cloudCoverGraph,        weatherData.hourly.cloud_cover,               GraphType.LINE_GRAYED);
 
@@ -645,6 +645,6 @@ function drawGraphs() {
     drawGraphYAxis(precipitationProbGraph, weatherData.hourly_units.precipitation_probability, YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_speed_10m,            YAxisType.LEFT,  minorTick = 1,  majorTick = 5);
     drawGraphYAxis(windGraph,              weatherData.hourly_units.wind_gusts_10m,            YAxisType.RIGHT, minorTick = 1,  majorTick = 5);
-    drawGraphYAxis(uvGraph,                weatherData.hourly_units.uv_index,                  YAxisType.LEFT,  minorTick = 1,  majorTick = uvGraph.yValueMax / 5);
+    drawGraphYAxis(uvGraph,                airqualityData.hourly_units.uv_index,               YAxisType.LEFT,  minorTick = 1,  majorTick = uvGraph.yValueMax / 5);
     drawGraphYAxis(cloudCoverGraph,        weatherData.hourly_units.cloud_cover,               YAxisType.RIGHT, minorTick = 5,  majorTick = 25);
 }
