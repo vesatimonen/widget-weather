@@ -146,6 +146,7 @@ async function getWeatherData(latitude, longitude) {
         console.error(err);
     }
 
+
     // Get day of year
     const date = new Date(weatherData.current.time);
     const dayOfYear = Math.floor(
@@ -160,8 +161,32 @@ async function getWeatherData(latitude, longitude) {
     for (let index = 0; index < weatherData.hourly.uv_index.length; index++) {
         weatherData.hourly.uv_index[index] = correctUvIndex(weatherData.hourly.uv_index[index], latitude, dayOfYear);
     }
-
 }
+
+
+let airqualityData = undefined;
+async function getAirqualityData(latitude, longitude) {
+    try {
+        let days = 2;
+        if (params.days != undefined) {
+            days = params.days;
+        }
+
+
+        const query = "https://air-quality-api.open-meteo.com/v1/air-quality" +
+                      "?latitude=" + latitude + "&longitude=" + longitude +
+                      "&timezone=auto&temperature_unit=celsius&wind_speed_unit=ms&precipitation_unit=mm" +
+                      "&forecast_days=" + days +
+                      "&current=uv_index" +
+                      "&hourly=uv_index";
+
+        const response = await fetch(query);
+        airqualityData = await response.json();
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 
 
 /*****************************************************************************
@@ -254,6 +279,7 @@ window.onload = async function() {
         // Get weather data (wait for results)
         document.getElementById("header-title").innerHTML = "Loading weather data...";
         await getWeatherData(location.latitude, location.longitude);
+        await getAirqualityData(location.latitude, location.longitude);
 
         // Get location address (wait for result)
         document.getElementById("header-title").innerHTML = "Loading location address...";
