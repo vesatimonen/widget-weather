@@ -23,6 +23,11 @@ function getParams() {
 
     /* Days parameter */
     params.days = url.searchParams.get("days");
+    if (params.days != undefined) {
+        if (params.days > 7) {
+            params.days = 7;
+        }
+    }
 }
 
 
