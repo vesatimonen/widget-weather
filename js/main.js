@@ -109,7 +109,8 @@ async function getCurrentLocation() {
 /*****************************************************************************
 * Get weather data
 *****************************************************************************/
-let weatherData = undefined;
+let weatherData    = undefined;
+let airqualityData = undefined;
 async function getWeatherData(latitude, longitude) {
     try {
         let days = 2;
@@ -131,11 +132,7 @@ async function getWeatherData(latitude, longitude) {
     } catch (err) {
         console.error(err);
     }
-}
 
-
-let airqualityData = undefined;
-async function getAirqualityData(latitude, longitude) {
     try {
         let days = 2;
         if (params.days != undefined) {
@@ -156,6 +153,7 @@ async function getAirqualityData(latitude, longitude) {
         console.error(err);
     }
 }
+
 
 
 
@@ -249,7 +247,6 @@ window.onload = async function() {
         // Get weather data (wait for results)
         document.getElementById("header-title").innerHTML = "Loading weather data...";
         await getWeatherData(location.latitude, location.longitude);
-        await getAirqualityData(location.latitude, location.longitude);
 
         // Get location address (wait for result)
         document.getElementById("header-title").innerHTML = "Loading location address...";
