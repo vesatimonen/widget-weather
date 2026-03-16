@@ -24,8 +24,8 @@ function getParams() {
     /* Days parameter */
     params.days = url.searchParams.get("days");
     if (params.days != undefined) {
-        if (params.days > 7) {
-            params.days = 7;
+        if (params.days > 5) {
+            params.days = 5;
         }
     }
 }
@@ -118,7 +118,6 @@ async function getWeatherData(latitude, longitude) {
             days = params.days;
         }
 
-
         const query = "https://api.open-meteo.com/v1/forecast" +
                       "?latitude=" + latitude + "&longitude=" + longitude +
                       "&timezone=auto&temperature_unit=celsius&wind_speed_unit=ms&precipitation_unit=mm" +
@@ -138,7 +137,6 @@ async function getWeatherData(latitude, longitude) {
         if (params.days != undefined) {
             days = params.days;
         }
-
 
         const query = "https://air-quality-api.open-meteo.com/v1/air-quality" +
                       "?latitude=" + latitude + "&longitude=" + longitude +
